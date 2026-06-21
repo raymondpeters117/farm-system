@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+	<style type="text/css">
+	</style>
+</head>
+<body style="background-image: url('1098385796641987805.jpg');background-repeat:no-repeat;background-size:cover;">
+
+<nav>
+    <h2>Farm Dashboard</h2>
+
+
+<div class="container">
+
+    <aside class="sidebar">
+
+        <div class="logo-area">
+            <img id="farmLogo"
+                 src="download (3).jpg" height="75" width="100">
+            <h2>Farm System</h2>
+        </div>
+
+        <ul>
+
+            <li><a href="dashboard.html">Dashboard</a></li>
+
+            <li><a href="income.html">Income</a></li>
+
+            <li><a href="expenses.html">Expenses</a></li>
+
+            <li><a href="workers.html">Workers</a></li>
+
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="crops.html">Crops</a></li>
+
+            <li><a href="reports.html">Reports</a></li>
+
+            <li><a href="settings.html">Settings</a></ul>
+<button onclick="logout()">Logout</button>7:22 PM 6/20/2026
+    </aside>
+</nav>
+<main class="content">
+
+        <section class="cards">
+
+            <div class="card">
+                <h3>Total Income</h3>
+                <p id="totalIncome">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Expenses</h3>
+                <p id="totalExpenses">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Profit</h3>
+                <p id="profit">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Workers</h3>
+                <p id="workerCount">0</p>
+            </div>
+
+        </section>
+
+        <div class="chart-container">
+            <canvas id="financeChart"></canvas>
+        </div>
+
+    </main>
+<div id="loggedUser"></div>
+</div>
+<script src="auth.js"></script>
+<script src="dashboard.js"></script>
+
+</body>
+</html>

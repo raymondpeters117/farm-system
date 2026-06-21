@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Settings</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<nav>
+        <ul>
+
+            <li><a href="dashboard.html">Dashboard</a></li>
+
+            <li><a href="income.html">Income</a></li>
+
+            <li><a href="expenses.html">Expenses</a></li>
+
+            <li><a href="workers.html">Workers</a></li>
+
+            <li><a href="inventory.html">Inventory</a></li>
+
+            <li><a href="crops.html">Crops</a></li>
+
+            <li><a href="reports.html">Reports</a></li>
+
+            <li><a href="settings.html">Settings</a></li>
+ <button onclick="logout()">Logout</button>   </ul>
+        </ul>
+
+    </aside>
+</nav>
+<body>
+
+<h2>User Management</h2>
+<section class="settings-card">
+    <h2>Create New Account</h2>
+
+    <input type="text" id="newUsername" placeholder="Username">
+
+    <input type="password" id="newPassword" placeholder="Password">
+
+    <select id="newRole">
+        <option value="admin">Admin</option>
+        <option value="cashier">Cashier</option>
+    </select>
+
+    <button onclick="createAccount()">Save Account</button>
+
+    <h3>Saved Accounts</h3>
+    <div id="accountsList"></div>
+</section>
+<table>
+
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody id="userTable"></tbody>
+
+</table>
+
+<script src="settings.js"></script>
+
+</body>
+</html>

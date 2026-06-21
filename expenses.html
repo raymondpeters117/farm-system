@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expenses</title>
+    <link rel="stylesheet" href="style.css">
+	<style type="text/css">
+	.auto-style1 {
+		background-color: #008000;
+	}
+	.auto-style2 {
+		background-color: #008000;
+		margin-top: 0;
+	}
+	</style>
+</head>
+
+<body>
+<nav>
+    <h2>Farm Dashboard</h2>
+
+    
+        <ul>
+
+            <li><a href="dashboard.html">Dashboard</a></li>
+
+            <li><a href="income.html">Income</a></li>
+
+            <li><a href="expenses.html">Expenses</a></li>
+
+            <li><a href="workers.html">Workers</a></li>
+
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="crops.html">Crops</a></li>
+
+            <li><a href="reports.html">Reports</a></li>
+
+            <li><a href="settings.html">Settings</a></li>
+<button onclick="logout()">Logout</button>
+</ul>
+        </ul>
+
+    </aside>
+</nav><<div class="sidebar-user">
+    <img alt="" src="FB_IMG_16397098747057860.jpg" style="width: 100px; height: 70px">
+    <h4 id="loggedUser"><span class="auto-style1"><strong>Loading</strong></span>...</h4>
+<h2 class="auto-style2" style="border: medium solid #FF0000; border-radius: 15px; width: 191px; font-family: 'comic Sans MS'; font-size: x-large; font-weight: 200; font-style: normal; font-variant: small-caps; text-transform: capitalize; color: #FFFF00; background-color: #008000; display: block; float: right; cursor: wait; visibility: visible; height: 32px; position: absolute; left: 771px; top: 219px;">Farm Expenses</h2>
+
+<div class="form-section">
+
+    &nbsp;&nbsp;
+
+    <input type="text" id="expenseItem" name="se" value="expense">
+<input type="number" id="expenseAmount" name="se" value="cost">
+<select id="expenseCategory">
+    <option value="">Select Category</option>
+    <option>Feed</option>
+    <option>Workers</option>
+    <option>Medicine</option>
+    <option>Fuel</option>
+</select>
+<input type="date" id="expenseDate">
+
+<button onclick="addExpense()">Save Expense</button>
+
+<input type="text" id="searchExpense"
+       onkeyup="searchExpenses()"
+       placeholder="Search expenses">
+
+<h3>Total Expenses: <span id="totalExpenses">UGX 0</span></h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="expenseTableBody"></tbody>
+</table><script src="expense.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+    <h2>Farm Dashboard</h2>
+
+  
+        <ul>
+
+            <li><a href="dashboard.html">Dashboard</a></li>
+
+            <li><a href="income.html">Income</a></li>
+
+            <li><a href="expenses.html">Expenses</a></li>
+
+            <li><a href="workers.html">Workers</a></li>
+
+            <li><a href="inventory.html">Inventory</a></li>
+            <li><a href="crops.html">Crops</a></li>
+
+            <li><a href="reports.html">Reports</a></li>
+
+            <li><a href="settings.html">Settings</a></li>
+ <button onclick="logout()">Logout</button>
+        </ul>
+
+    </aside>
+</nav>
+<div class="sidebar-user">
+    <img src="FB_IMG_16397098747057860.jpg" alt="User" height="70" width="100">
+    <h4 id="loggedUser"><span class="auto-style1"><strong>Loading</strong></span>...</h4>
+<h2>Inventory Management</h2>
+
+<div class="form-section">
+
+    <input type="text"
+           id="item"
+           placeholder="Item Name">
+
+    <input type="number"
+           id="quantity"
+           placeholder="Quantity">
+
+    <input type="text"
+           id="category"
+           placeholder="Category">
+
+    <button onclick="addItem()">
+        Add Item
+    </button>
+
+</div>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody id="inventoryTable"></tbody>
+
+</table>
+<script src="auth.js"></script>
+<script src="inventory.js"></script>
+
+</body>
+</html>

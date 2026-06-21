@@ -1,0 +1,169 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+}
+
+.login-page{
+    background:url('../images/farm-bg.jpg');
+    background-size:cover;
+    height:100vh;
+}
+
+.login-container{
+    width:350px;
+    background:white;
+    padding:30px;
+    margin:auto;
+    position:relative;
+    top:120px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.logo{
+    width:100px;
+    margin-bottom:15px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#1B5E20;
+    color:white;
+    cursor:pointer;
+}
+
+nav{
+    background:#1B5E20;
+    color:white;
+    padding:15px;
+}
+.dark-mode{
+    background:#121212;
+    color:white;
+}
+
+#themeToggle{
+    padding:10px 15px;
+    cursor:pointer;
+    border:none;
+    border-radius:5px;
+}
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+}
+
+.cards{
+    display:flex;
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    flex:1;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}.page-header{
+    padding:20px;
+    text-align:center;
+}
+
+.form-section{
+    background:white;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+}
+
+.form-section form{
+    display:grid;
+    gap:15px;
+}
+
+.form-section input{
+    padding:12px;
+}
+
+.form-section button{
+    background:#1B5E20;
+    color:white;
+    border:none;
+    padding:12px;
+    cursor:pointer;
+}
+
+.table-section{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+}
+
+.table-section table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.table-section th,
+.table-section td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:left;
+}
+
+.table-section th{
+    background:#1B5E20;
+    color:white;
+}
+
+#searchIncome{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+}
+.sidebar-user{
+    text-align:center;
+    padding:15px;
+    background:#ffffff15;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.sidebar-user img{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    margin-bottom:10px;
+}
+
+.sidebar-user h4{
+    margin:5px 0;
+    color:white;
+}
+
+.sidebar-user span{
+    color:#ddd;
+    font-size:14px;
+}
