@@ -93,3 +93,17 @@ if (currentUser.role !== "admin") {
 
     window.location.href = "dashboard.html";
 }
+html += `
+<div class="account-item">
+    <p>
+        <strong>${user.username}</strong>
+        (${user.role})
+        <br>
+        Password: ${user.password}
+    </p>
+
+    <button onclick="deleteAccount(${index})">
+        Delete
+    </button>
+</div>
+`;
