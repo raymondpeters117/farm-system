@@ -1,3 +1,4 @@
+console.log("Settings JS loaded");
 // Create default admin if none exists
 if (!localStorage.getItem("users")) {
     const defaultUsers = [
@@ -93,17 +94,28 @@ if (currentUser.role !== "admin") {
 
     window.location.href = "dashboard.html";
 }
-html += `
-<div class="account-item">
-    <p>
-        <strong>${user.username}</strong>
-        (${user.role})
-        <br>
-        Password: ${user.password}
-    </p>
+function resetAccounts() {
 
-    <button onclick="deleteAccount(${index})">
-        Delete
-    </button>
-</div>
-`;
+    if (!confirm("Delete all accounts?")) {
+        return;
+    }
+
+    localStorage.removeItem("users");
+
+    const defaultUsers = [
+        {
+            username: "admin",
+            password: "admin123",
+            role: "admin"
+        }
+    ];
+
+    localStorage.setItem(
+        "users",
+        JSON.stringify(defaultUsers)
+    );
+
+    loadAccounts();
+
+    alert("Accounts reset successfully");
+}
