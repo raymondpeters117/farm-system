@@ -94,3 +94,10 @@ document.getElementById("searchIncome")
 });
 
 displayIncome();
+function logout() {
+    localStorage.removeItem("loggedInUser");
+
+    alert("Logged out successfully!");
+
+    window.location.href = "index.html"; // Login page
+}

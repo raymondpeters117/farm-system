@@ -61,3 +61,10 @@ function deleteWorker(id) {
 
     loadWorkers();
 }
+function logout() {
+    localStorage.removeItem("loggedInUser");
+
+    alert("Logged out successfully!");
+
+    window.location.href = "index.html"; // Login page
+}

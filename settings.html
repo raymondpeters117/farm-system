@@ -22,27 +22,50 @@
             <li><a href="file:///C:/Users/FIK%20RED/Desktop/FARM/reports.html">Reports</a></li>
 
             <li><a href="file:///C:/Users/FIK%20RED/Desktop/FARM/settings.html">Settings</a></li>
- <button onclick="logout()">Logout</button>   </ul>
+ <button onclick="logout()" style="border: medium dotted #FF0000; border-radius: 20px; font-family: &amp;quot; font-size: x-large; color: #FFFF00; font-weight: 400; background-color: #1B5E20; width: 15%;">Logout</button>   </ul>
         
 
     
 </nav>
 
-
+<div class="user-profile">
+    <img id="profilePic" src="" alt="Profile">
+    <h3 id="profileName"></h3>
+</div>
 <h2>User Management</h2>
 <section class="settings-card">
     <h2>Create New Account</h2>
 
-    <input type="text" id="newUsername" placeholder="Username">
+    <section class="account-section">
+    <h2>Create Account</h2>
 
-    <input type="password" id="newPassword" placeholder="Password">
+    <input type="text" id="fullName" placeholder="Full Name" required>
 
-    <select id="newRole">
-        <option value="admin">Admin</option>
-        <option value="cashier">Cashier</option>
+    <input type="text" id="username" placeholder="Username" required>
+
+    <input type="password" id="password" placeholder="Password" required>
+
+    <select id="role">
+        <option value="Admin">Admin</option>
+        <option value="Cashier">Cashier</option>
     </select>
 
-    <button onclick="createAccount()">Save Account</button>
+    <label>Profile Picture</label>
+    <input type="file" id="profilePhoto" accept="image/*">
+
+    <br><br>
+
+    <img id="previewImage"
+         src=""
+         alt="Preview"
+         style="width:120px;height:120px;border-radius:50%;display:none;object-fit:cover;">
+
+    <br><br>
+
+    <button type="button" onclick="saveAccount()">
+    Save Account
+</button>
+</section>
 
     <h3>Saved Accounts</h3>
     <div id="accountsList">
@@ -67,32 +90,7 @@
     <tbody id="userTable"></tbody>
 
 </table>
-<div class="change-password-box">
-    <h3>Change Password</h3>
-
-    <input type="text" id="cpUsername" placeholder="Username">
-
-    <input type="password" id="oldPassword" placeholder="Current Password">
-
-    <input type="password" id="newPasswordChange" placeholder="New Password">
-
-    <button onclick="changePassword()">
-        Change Password
-    </button>
-</div>
-<div class="account-item">
-    <p>
-        <strong>${user.username}</strong>
-        (${user.role})
-        <br>
-        Password: ${user.password}
-    </p>
-
-    <button onclick="deleteAccount(${index})">
-        Delete
-    </button>
-</div>
-<script src="./settings_files/settings.js"></script>
+<script src="settings.js"></script>
 
 
 </body></html>

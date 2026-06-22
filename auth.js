@@ -19,3 +19,10 @@ if (!currentUser) {
     document.getElementById("loggedRole").textContent =
         currentUser.role.toUpperCase();
 });
+function logout() {
+    localStorage.removeItem("loggedInUser");
+
+    alert("Logged out successfully!");
+
+    window.location.href = "index.html"; // Login page
+}
