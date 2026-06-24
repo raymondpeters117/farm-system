@@ -29,53 +29,14 @@ function login() {
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    const user = users.find(
-        u => u.username === username && u.password === password
+    const user = users.find(u =>
+        u.username === username &&
+        u.password === password
     );
 
     if (user) {
 
-        // Save logged-in user
-        localStorage.setItem("loggedInUser", JSON.stringify(user));
-
-        alert("Login Successful!");
-
-        // Redirect to dashboard
-        window.location.href = "dashboard.html";
-
-    } else {
-
-        alert("Invalid Username or Password");
-
-    }
-}
-
-// Allow Enter key to login
-document.addEventListener("keydown", function (event) {
-
-    if (event.key === "Enter") {
-        login();
-    }
-
-});
-localStorage.removeItem("users");
-// index.js
-
-function login() {
-
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    const user = users.find(user =>
-        user.username === username &&
-        user.password === password
-    );
-
-    if (user) {
-
-        // Save full user object
+        // Save the complete user object
         localStorage.setItem(
             "loggedInUser",
             JSON.stringify(user)
@@ -91,12 +52,3 @@ function login() {
 
     }
 }
-
-// Press Enter to login
-document.addEventListener("keydown", function(event) {
-
-    if (event.key === "Enter") {
-        login();
-    }
-
-});
