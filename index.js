@@ -59,3 +59,44 @@ document.addEventListener("keydown", function (event) {
 
 });
 localStorage.removeItem("users");
+// index.js
+
+function login() {
+
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const user = users.find(user =>
+        user.username === username &&
+        user.password === password
+    );
+
+    if (user) {
+
+        // Save full user object
+        localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(user)
+        );
+
+        alert("Login Successful!");
+
+        window.location.href = "dashboard.html";
+
+    } else {
+
+        alert("Invalid Username or Password");
+
+    }
+}
+
+// Press Enter to login
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        login();
+    }
+
+});
