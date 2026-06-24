@@ -1,3 +1,9 @@
+const loggedInUser =
+    JSON.parse(localStorage.getItem("loggedInUser"));
+
+if (!loggedInUser) {
+    window.location.href = "index.html";
+}
 function loadDashboard() {
 
     const incomes =
