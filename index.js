@@ -58,3 +58,4 @@ document.addEventListener("keydown", function (event) {
     }
 
 });
+localStorage.removeItem("users");
