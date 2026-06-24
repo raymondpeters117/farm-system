@@ -1,28 +1,29 @@
 const currentUser =
-JSON.parse(localStorage.getItem("currentUser"));
+    JSON.parse(localStorage.getItem("loggedInUser"));
 
 if (!currentUser) {
     window.location.href = "index.html";
-}document.addEventListener("DOMContentLoaded", () => {
+}
 
-    let currentUser =
-        JSON.parse(localStorage.getItem("currentUser"));
+document.addEventListener("DOMContentLoaded", () => {
+
+    const currentUser =
+        JSON.parse(localStorage.getItem("loggedInUser"));
 
     if (!currentUser) {
         window.location.href = "index.html";
         return;
     }
 
-    document.getElementById("loggedUser").textContent =
-        currentUser.username;
+    const userEl = document.getElementById("loggedUser");
+    const roleEl = document.getElementById("loggedRole");
 
-    document.getElementById("loggedRole").textContent =
-        currentUser.role.toUpperCase();
+    if (userEl) {
+        userEl.textContent = currentUser.username;
+    }
+
+    if (roleEl) {
+        roleEl.textContent = currentUser.role;
+    }
+
 });
-function logout() {
-    localStorage.removeItem("loggedInUser");
-
-    alert("Logged out successfully!");
-
-    window.location.href = "index.html"; // Login page
-}
