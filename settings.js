@@ -145,3 +145,5 @@ function deleteAccount(index) {
 document.addEventListener("DOMContentLoaded", function () {
     displayAccounts();
 });
+localStorage.removeItem("users");
+localStorage.removeItem("loggedInUser");
