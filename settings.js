@@ -145,14 +145,3 @@ function deleteAccount(index) {
 document.addEventListener("DOMContentLoaded", function () {
     displayAccounts();
 });
-if (!localStorage.getItem("users")) {
-    const users = [
-        {
-            username: "admin",
-            password: "admin123",
-            role: "Admin"
-        }
-    ];
-
-    localStorage.setItem("users", JSON.stringify(users));
-};
