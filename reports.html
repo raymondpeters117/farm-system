@@ -3,7 +3,7 @@
 <head>
     <title>Reports</title>
 
-    <link rel="stylesheet"href="style.css">
+    <link rel="stylesheet"href="expense.css">
 	<link rel="sheetstyle" href="bacground.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -12,32 +12,25 @@
 </style>
 
 </head>
-<nav>
-    <h2>Farm Dashboard</h2>
+ <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <h2>🌾 Farm Dashboard</h2>
+        </div>
 
-   
-        <ul>
-
+        <ul class="nav-links">
             <li><a href="dashboard.html">Dashboard</a></li>
-
             <li><a href="income.html">Income</a></li>
-
-            <li><a href="expenses.html">Expenses</a></li>
-
+            <li><a href="expenses.html" class="active">Expenses</a></li>
             <li><a href="workers.html">Workers</a></li>
-
             <li><a href="inventory.html">Inventory</a></li>
-			
             <li><a href="crops.html">Crops</a></li>
-
             <li><a href="reports.html">Reports</a></li>
-			
-			<a href="settings.html">Settings</a>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="index.html" class="logout-btn">Logout</a></li>
+        </ul>
+    </nav>
 
-	</ul>
-
-    </aside>
-</nav>
 <div class="user-profile">
     <img id="userPhoto" src="" alt="Profile Photo">
 </div>
