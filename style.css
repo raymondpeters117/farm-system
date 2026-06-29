@@ -389,8 +389,6 @@ nav ul{
 .cards{
     grid-template-columns:1fr;
 }
-
-}
 #accountsList {
     display: flex;
     flex-wrap: wrap;   /* allows wrapping to next line */
@@ -403,4 +401,5 @@ nav ul{
     border-radius: 10px;
     background: white;
     text-align: center;
+}
 }
