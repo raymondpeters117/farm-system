@@ -391,3 +391,8 @@ nav ul{
 }
 
 }
+#accountsList {
+    display: flex;
+    flex-wrap: wrap;   /* allows wrapping to next line */
+    gap: 15px;         /* space between cards */
+}
