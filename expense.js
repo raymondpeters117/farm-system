@@ -1,66 +1,76 @@
+// expense.js
+
+// Load expenses from localStorage
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-function addExpense() {
-    const category = document.getElementById("category").value;
-    const amount = parseFloat(document.getElementById("expenseAmount").value);
+// Display expenses when the page loads
+document.addEventListener("DOMContentLoaded", displayExpenses);
 
-    if (!item || !amount) {
-        alert("Fill all fields");
+// Save expense
+document.getElementById("expenseForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const item = document.getElementById("item").value.trim();
+    const category = document.getElementById("category").value;
+    const amount = document.getElementById("amount").value;
+    const date = document.getElementById("date").value;
+
+    if (item === "" || category === "" || amount === "" || date === "") {
+        alert("Please fill in all fields.");
         return;
     }
 
-    expenses.push({
-        item,
-        amount,
-        date: new Date().toLocaleDateString()
-    });
+    const expense = {
+        item: item,
+        category: category,
+        amount: amount,
+        date: date
+    };
+
+    expenses.push(expense);
 
     localStorage.setItem("expenses", JSON.stringify(expenses));
 
-    alert("Expense Saved");
-}
+    displayExpenses();
+
+    document.getElementById("expenseForm").reset();
+});
+
+// Display all expenses
 function displayExpenses() {
+
     const tableBody = document.getElementById("expenseTableBody");
-
-    if (!tableBody) {
-        console.log("expenseTableBody not found");
-        return;
-    }
-
     tableBody.innerHTML = "";
+
+    expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
     expenses.forEach((expense, index) => {
 
-        let row = `
-        <tr>
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
             <td>${index + 1}</td>
             <td>${expense.item}</td>
             <td>${expense.category}</td>
-            <td>${expense.amount}</td>
+            <td>${Number(expense.amount).toLocaleString()}</td>
             <td>${expense.date}</td>
             <td>
-                <button onclick="deleteExpense(${expense.id})">
+                <button onclick="deleteExpense(${index})">
                     Delete
                 </button>
             </td>
-        </tr>
         `;
 
-        tableBody.innerHTML += row;
+        tableBody.appendChild(row);
     });
 }
-function deleteExpense(id) {
 
-    expenses = expenses.filter(expense => expense.id != id);
+// Delete expense
+function deleteExpense(index) {
 
-    localStorage.setItem(
-        "expenses",
-        JSON.stringify(expenses)
-    );
+    expenses.splice(index, 1);
+
+    localStorage.setItem("expenses", JSON.stringify(expenses));
 
     displayExpenses();
 }
-window.onload = function () {
-    displayExpenses();
-};
-const category = document.getElementById("category").value;
