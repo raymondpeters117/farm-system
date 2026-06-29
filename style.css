@@ -393,8 +393,6 @@ nav ul{
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    align-items: flex-start;
-   display: block;
 }
 .account-item {
     width: 180px;
