@@ -14,7 +14,11 @@ body{
     background-size:cover;
     height:100vh;
 }
-
+nav{
+    background:#1B5E20;
+    color:white;
+    padding:15px;
+}
 .login-container{
     width:350px;
     background:white;
