@@ -1,7 +1,7 @@
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
 function addExpense() {
-    const item = document.getElementById("expenseItem").value;
+    const category = document.getElementById("category").value;
     const amount = parseFloat(document.getElementById("expenseAmount").value);
 
     if (!item || !amount) {
