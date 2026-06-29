@@ -391,8 +391,9 @@ nav ul{
 }
 #accountsList {
     display: flex;
-    flex-wrap: wrap;   /* allows wrapping to next line */
-    gap: 15px;         /* space between cards */
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-start;
 }
 .account-item {
     width: 200px;
