@@ -1,10 +1,16 @@
-﻿body{
-    font-family: Arial, sans-serif;
-    background:#f4f6f9;
-    margin:0;
-    padding:20px;
-}
+﻿body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
 
+    background-image: url("download (1).jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+
+    font-family: Arial, sans-serif;
+}
 .container{
     max-width:1200px;
     margin:auto;
