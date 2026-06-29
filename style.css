@@ -396,3 +396,11 @@ nav ul{
     flex-wrap: wrap;   /* allows wrapping to next line */
     gap: 15px;         /* space between cards */
 }
+.account-item {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: white;
+    text-align: center;
+}
