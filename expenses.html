@@ -1,80 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Expenses</title>
-    <link rel="stylesheet" href="style.css">
-	<style type="text/css">
-	.auto-style1 {
-		background-color: #008000;
-	}
-	.auto-style2 {
-		background-color: #008000;
-		margin-top: 0;
-	}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#f5f7fb;
+            padding:30px;
+        }
+
+        .container{
+            width:95%;
+            max-width:1100px;
+            margin:auto;
+            background:#fff;
+            padding:25px;
+            border-radius:10px;
+            box-shadow:0 5px 15px rgba(0,0,0,.15);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:20px;
+            color:#333;
+        }
+
+        form{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+            gap:15px;
+            margin-bottom:25px;
+        }
+
+        input,
+        select,
+        button{
+            padding:12px;
+            font-size:16px;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+
+        button{
+            background:#007bff;
+            color:white;
+            border:none;
+            cursor:pointer;
+            transition:.3s;
+        }
+
+        button:hover{
+            background:#0056b3;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        table th,
+        table td{
+            border:1px solid #ddd;
+            padding:12px;
+            text-align:center;
+        }
+
+        table th{
+            background:#007bff;
+            color:white;
+        }
+
+        tr:nth-child(even){
+            background:#f9f9f9;
+        }
+
+        .delete-btn{
+            background:red;
+            color:white;
+            padding:8px 14px;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        .delete-btn:hover{
+            background:darkred;
+        }
+
+        @media(max-width:700px){
+
+            table{
+                font-size:13px;
+            }
+
+            form{
+                grid-template-columns:1fr;
+            }
+
+        }
+    </style>
 </head>
 
-<body style="background-image: url('download%20(1).jpg');background-repeat:no-repeat;background-size:cover;">
-<nav>
-    <h2>Farm Dashboard</h2>
+<body>
 
-    
-        <ul>
+<div class="container">
 
-            <li><a href="dashboard.html">Dashboard</a></li>
+<h1>Expense Tracker</h1>
 
-            <li><a href="income.html">Income</a></li>
+<form id="expenseForm">
 
-            <li><a href="expenses.html">Expenses</a></li>
+    <input
+        type="text"
+        id="item"
+        placeholder="Enter Item"
+        required>
 
-            <li><a href="workers.html">Workers</a></li>
+    <select id="category" required>
+        <option value="">Select Category</option>
+        <option value="Food">Food</option>
+        <option value="Transport">Transport</option>
+        <option value="Education">Education</option>
+        <option value="Medical">Medical</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Rent">Rent</option>
+        <option value="Bills">Bills</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Other">Other</option>
+    </select>
 
-            <li><a href="inventory.html">Inventory</a></li>
-            <li><a href="crops.html">Crops</a></li>
+    <input
+        type="number"
+        id="amount"
+        placeholder="Amount"
+        required>
 
-            <li><a href="reports.html">Reports</a></li>
+    <input
+        type="date"
+        id="date"
+        required>
 
-            <li><a href="settings.html">Settings</a></li>
-<button onclick="logout()">Logout</button>
-</ul>
+    <button type="submit">
+        Save Expense
+    </button>
 
-    </aside>
-</nav><<div class="sidebar-user">
-
-<div class="form-section">
-
-    &nbsp;&nbsp;
-
-    <input type="text" id="expenseItem" name="se" value="expense">
-<input type="number" id="expenseAmount" name="se" value="cost">
-<select id="category">
-    <option value="Food">Food</option>
-    <option value="Transport">Transport</option>
-    <option value="Bills">Bills</option>
-</select>
-<input type="date" id="expenseDate">
-
-<button onclick="addExpense()">Save Expense</button>
-
-<input type="text" id="searchExpense"
-       onkeyup="searchExpenses()"
-       placeholder="Search expenses">
-
-<h3>Total Expenses: <span id="totalExpenses">UGX 0</span></h3>
+</form>
 
 <table>
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Item</th>
-            <th>Category</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="expenseTableBody"></tbody>
-</table><script src="expense.js"></script>
-<script src="auth.js"></script>
+
+<thead>
+
+<tr>
+    <th>#</th>
+    <th>Item</th>
+    <th>Category</th>
+    <th>Amount</th>
+    <th>Date</th>
+    <th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="expenseTableBody">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script src="expense.js"></script>
+
 </body>
 </html>
