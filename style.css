@@ -391,9 +391,11 @@ nav ul{
 }
 #accountsList {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: 15px;
 }
+
 .account-item {
     width: 180px;
     padding: 12px;
