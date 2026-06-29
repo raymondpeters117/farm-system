@@ -394,13 +394,14 @@ nav ul{
     flex-wrap: wrap;
     gap: 15px;
     align-items: flex-start;
+   display: block;
 }
 .account-item {
-    width: 200px;
-    padding: 10px;
-    border: 1px solid #ccc;
+    width: 180px;
+    padding: 12px;
     border-radius: 10px;
-    background: white;
+    background: #f4f4f4;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 }
