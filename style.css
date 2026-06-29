@@ -99,6 +99,12 @@ button:hover{
     transform:translateY(-2px);
     box-shadow:0 10px 20px rgba(25,118,210,.35);
 }
+.btn {
+  font-size: 12px;      /* makes text smaller */
+  padding: 5px 10px;    /* reduces button size */
+  width: auto;          /* optional */
+  height: auto;         /* optional */
+}
 
 /* ==========================
    NAVIGATION
