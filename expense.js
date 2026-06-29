@@ -63,3 +63,4 @@ function deleteExpense(id) {
 window.onload = function () {
     displayExpenses();
 };
+const category = document.getElementById("category").value;
