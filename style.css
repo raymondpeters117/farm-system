@@ -17,7 +17,87 @@ body{
     color:#fff;
 }
 /* ================= SIDEBAR NAVIGATION ================= */
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, sans-serif;
+}
 
+/* PAGE BACKGROUND */
+body{
+    background:#e3f2fd;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:240px;
+    height:100vh;
+    background:#0d47a1;
+    display:flex;
+    flex-direction:column;
+    padding-top:20px;
+    box-shadow:4px 0 15px rgba(0,0,0,0.3);
+    z-index:1000;
+}
+
+/* TITLE */
+.sidebar h2{
+    color:white;
+    text-align:center;
+    margin-bottom:25px;
+}
+
+/* LINKS */
+.sidebar a{
+    padding:14px 20px;
+    color:white;
+    text-decoration:none;
+    display:block;
+    transition:0.3s;
+    font-weight:500;
+}
+
+/* hover effect */
+.sidebar a:hover{
+    background:#1976d2;
+    padding-left:28px;
+}
+
+/* ================= PAGE CONTENT ================= */
+
+.page-content{
+    margin-left:0;   /* IMPORTANT: stays independent */
+    padding:20px;
+}
+
+/* optional container for better layout */
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+    .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
+        flex-direction:row;
+        justify-content:center;
+        flex-wrap:wrap;
+    }
+
+    .sidebar a{
+        padding:10px;
+    }
+}
 .sidebar{
     position:fixed;
     left:0;
