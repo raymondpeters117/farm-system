@@ -210,7 +210,17 @@ table tr:hover{
 .edit-btn:hover{
     background:#0d47a1;
 }
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
 
+.logo img{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+}
 .delete-btn:hover{
     background:#b71c1c;
 }
