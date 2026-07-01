@@ -1,113 +1,207 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farm Management System | Dashboard</title>
+    <title>RAYP Farm Management System | Dashboard</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-   <div class="sidebar">
-    <h2>RAYP FARM</h2>
+<div class="wrapper">
 
-    <a href="dashboard.html">Dashboard</a>
-    <a href="income.html">Income</a>
-    <a href="expense.html">Expenses</a>
-    <a href="workers.html">Workers</a>
-    <a href="settings">Settings</a>
-    <a href="logout">Logout</a>
-</div>
+    <!-- ================= SIDEBAR ================= -->
 
-<div class="page-content">
-        <div class="header">
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h1>RAYP</h1>
+            <p>Farm Management System</p>
+        </div>
+
+        <nav class="nav-menu">
+
+            <a href="dashboard.html" class="active">
+                🏠 <span>Dashboard</span>
+            </a>
+
+            <a href="income.html">
+                💰 <span>Income</span>
+            </a>
+
+            <a href="expenses.html">
+                💸 <span>Expenses</span>
+            </a>
+
+            <a href="workers.html">
+                👨‍🌾 <span>Workers</span>
+            </a>
+
+            <a href="inventory.html">
+                📦 <span>Inventory</span>
+            </a>
+
+            <a href="crops.html">
+                🌱 <span>Crops</span>
+            </a>
+
+            <a href="reports.html">
+                📊 <span>Reports</span>
+            </a>
+
+            <a href="settings.html">
+                ⚙️ <span>Settings</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <button class="btn-danger"
+                onclick="window.location.href='index.html'">
+
+                🚪 Logout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main">
+
+        <!-- HEADER -->
+
+        <header class="header">
 
             <div>
-                <h1>Welcome to Your Farm Dashboard</h1>
-                <p>Manage your farm activities efficiently.</p>
+
+                <h2>Welcome to RAYP Farm Dashboard 👋</h2>
+
+                <p>Manage your farm activities efficiently from one place.</p>
+
             </div>
 
-           </div>
-	<div class="user-profile">
-   <img id="userPhoto" src="" alt="Profile Photo">
-    <span>Rayp</span>
-</div>
-                    <h3>Farm Manager</h3>
-                    <p>Administrator</p>
+            <div class="user-profile">
+
+                <img id="userPhoto"
+                     src="images/default-profile.png"
+                     alt="Profile Photo">
+
+                <div>
+
+                    <strong>Rayp</strong><br>
+
+                    <small>Farm Administrator</small>
+
                 </div>
+
             </div>
 
-        </div>
+        </header>
 
-        <!-- Dashboard Cards -->
-        <div class="cards">
+        <!-- DASHBOARD CARDS -->
 
-            <div class="card income">
+        <section class="cards">
+
+            <div class="card">
+
                 <h3>Total Income</h3>
-                <h2>UGX 5,200,000</h2>
-                <p>Income received this month</p>
+
+                <p>UGX 5,200,000</p>
+
             </div>
 
-            <div class="card expense">
+            <div class="card">
+
                 <h3>Total Expenses</h3>
-                <h2>UGX 2,150,000</h2>
-                <p>Expenses recorded this month</p>
+
+                <p>UGX 2,150,000</p>
+
             </div>
 
-            <div class="card workers">
+            <div class="card">
+
                 <h3>Workers</h3>
-                <h2>18</h2>
-                <p>Active farm workers</p>
+
+                <p>18</p>
+
             </div>
 
-            <div class="card inventory">
-                <h3>Inventory Items</h3>
-                <h2>96</h2>
-                <p>Available farm supplies</p>
-            </div>
+            <div class="card">
 
-        </div>
+                <h3>Inventory</h3>
 
-        <!-- Quick Actions -->
-        <section class="actions">
-
-            <h2>Quick Actions</h2>
-
-            <div class="action-buttons">
-
-                <a href="income.html">➕ Add Income</a>
-
-                <a href="expenses.html">💰 Add Expense</a>
-
-                <a href="workers.html">👨‍🌾 Manage Workers</a>
-
-                <a href="inventory.html">📦 Inventory</a>
-
-                <a href="crops.html">🌱 Crops</a>
-
-                <a href="reports.html">📊 Reports</a>
+                <p>96 Items</p>
 
             </div>
 
         </section>
 
-        <!-- Recent Activities -->
-        <section class="table-section">
+        <br><br>
 
-            <h2>Recent Activities</h2>
+        <!-- QUICK ACTIONS -->
+
+        <h2>Quick Actions</h2>
+
+        <br>
+
+        <div class="cards">
+
+            <button onclick="location.href='income.html'">
+                ➕ Add Income
+            </button>
+
+            <button onclick="location.href='expenses.html'">
+                💸 Add Expense
+            </button>
+
+            <button onclick="location.href='workers.html'">
+                👨‍🌾 Workers
+            </button>
+
+            <button onclick="location.href='inventory.html'">
+                📦 Inventory
+            </button>
+
+            <button onclick="location.href='crops.html'">
+                🌱 Crops
+            </button>
+
+            <button onclick="location.href='reports.html'">
+                📊 Reports
+            </button>
+
+        </div>
+
+        <br><br>
+
+        <!-- RECENT ACTIVITIES -->
+
+        <h2>Recent Activities</h2>
+
+        <div class="table-container">
 
             <table>
 
                 <thead>
 
                     <tr>
+
                         <th>#</th>
+
                         <th>Activity</th>
+
                         <th>Category</th>
+
                         <th>Amount</th>
+
                         <th>Date</th>
+
                     </tr>
 
                 </thead>
@@ -115,59 +209,97 @@
                 <tbody>
 
                     <tr>
+
                         <td>1</td>
+
                         <td>Purchased Fertilizer</td>
+
                         <td>Expense</td>
+
                         <td>UGX 350,000</td>
+
                         <td>29/06/2026</td>
+
                     </tr>
 
                     <tr>
+
                         <td>2</td>
+
                         <td>Sold Maize</td>
+
                         <td>Income</td>
+
                         <td>UGX 1,200,000</td>
+
                         <td>28/06/2026</td>
+
                     </tr>
 
                     <tr>
+
                         <td>3</td>
-                        <td>Worker Salary</td>
+
+                        <td>Worker Salaries</td>
+
                         <td>Expense</td>
+
                         <td>UGX 500,000</td>
+
                         <td>27/06/2026</td>
+
                     </tr>
 
                     <tr>
+
                         <td>4</td>
+
                         <td>Purchased Seeds</td>
+
                         <td>Inventory</td>
+
                         <td>UGX 280,000</td>
+
                         <td>26/06/2026</td>
+
                     </tr>
 
                     <tr>
+
                         <td>5</td>
+
                         <td>Tomato Harvest</td>
+
                         <td>Income</td>
+
                         <td>UGX 900,000</td>
+
                         <td>25/06/2026</td>
+
                     </tr>
 
                 </tbody>
 
             </table>
 
-        </section>
+        </div>
 
-    </div>
+        <!-- FOOTER -->
 
-    <footer>
-        <p>&copy; 2026 Farm Management System | All Rights Reserved.</p>
-    </footer>
+        <footer>
+
+            <p>
+                © 2026 RAYP Farm Management System |
+                All Rights Reserved.
+            </p>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="profile.js"></script>
 
 </body>
 </html>
-```
-<script src="profile.js"></script>
-
