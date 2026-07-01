@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAYP Farm Management System | Expense Tracker</title>
+    <title>RAYP Farm Management System | Expenses</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -49,7 +49,6 @@
     <main class="main">
 
         <!-- HEADER -->
-
         <header class="header">
 
             <div>
@@ -70,7 +69,7 @@
 
         </header>
 
-        <!-- ================= FORM ================= -->
+        <!-- ================= EXPENSE FORM ================= -->
 
         <div class="form-container">
 
@@ -97,15 +96,13 @@
 
                 <input type="date" id="date" required>
 
-                <button type="submit">
-                    Save Expense
-                </button>
+                <button type="submit">Save Expense</button>
 
             </form>
 
         </div>
 
-        <!-- ================= TOTAL ================= -->
+        <!-- ================= TOTAL EXPENSE ================= -->
 
         <div class="card">
             <h3>Total Expenditure</h3>
@@ -114,9 +111,11 @@
 
         <br>
 
-        <!-- ================= TABLE ================= -->
+        <!-- ================= SAVED EXPENSES TABLE ================= -->
 
         <div class="table-container">
+
+            <h2 style="margin-bottom:15px;">Saved Expenses</h2>
 
             <table>
 
@@ -125,13 +124,15 @@
                         <th>#</th>
                         <th>Item</th>
                         <th>Category</th>
-                        <th>Amount</th>
+                        <th>Amount (UGX)</th>
                         <th>Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
 
-                <tbody id="expenseTableBody"></tbody>
+                <tbody id="expenseTableBody">
+                    <!-- Data loads here -->
+                </tbody>
 
             </table>
 
