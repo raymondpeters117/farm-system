@@ -1,31 +1,39 @@
-// =============================
-// Expense Management System
-// =============================
+// ===============================
+// RAYP FARM MANAGEMENT SYSTEM
+// Expense Management
+// ===============================
 
 // Load expenses from localStorage
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
 // Display expenses when page loads
-displayExpenses();
+window.onload = function () {
+    displayExpenses();
+};
 
-// =============================
-// Add Expense
-// =============================
-function addExpense() {
+// ===============================
+// Save Expense
+// ===============================
 
+document.getElementById("expenseForm").addEventListener("submit", function (e) {
+
+    e.preventDefault();
+
+    const item = document.getElementById("item").value.trim();
+    const category = document.getElementById("category").value;
+    const amount = Number(document.getElementById("amount").value);
     const date = document.getElementById("date").value;
-    const description = document.getElementById("description").value.trim();
-    const amount = document.getElementById("amount").value;
 
-    if (date === "" || description === "" || amount === "") {
-        alert("Please fill in all fields.");
+    if (item === "" || category === "" || amount <= 0 || date === "") {
+        alert("Please fill in all fields correctly.");
         return;
     }
 
     const expense = {
-        date: date,
-        description: description,
-        amount: Number(amount)
+        item,
+        category,
+        amount,
+        date
     };
 
     expenses.push(expense);
@@ -33,52 +41,73 @@ function addExpense() {
     // Save to localStorage
     localStorage.setItem("expenses", JSON.stringify(expenses));
 
-    // Clear form
-    document.getElementById("date").value = "";
-    document.getElementById("description").value = "";
-    document.getElementById("amount").value = "";
-
+    // Refresh table
     displayExpenses();
 
-    alert("Expense saved successfully.");
-}
+    // Clear form
+    document.getElementById("expenseForm").reset();
 
-// =============================
+    alert("Expense saved successfully!");
+
+});
+
+// ===============================
 // Display Expenses
-// =============================
+// ===============================
+
 function displayExpenses() {
 
-    const table = document.getElementById("expenseTable");
+    const table = document.getElementById("expenseTableBody");
 
     table.innerHTML = "";
 
-    let total = 0;
+    let totalExpense = 0;
 
     expenses.forEach((expense, index) => {
 
-        total += Number(expense.amount);
+        totalExpense += expense.amount;
 
         table.innerHTML += `
-            <tr>
-                <td>${expense.date}</td>
-                <td>${expense.description}</td>
-                <td>UGX ${expense.amount.toLocaleString()}</td>
-                <td>
-                    <button onclick="deleteExpense(${index})">
-                        Delete
-                    </button>
-                </td>
-            </tr>
+        <tr>
+            <td>${index + 1}</td>
+            <td>${expense.item}</td>
+            <td>${expense.category}</td>
+            <td>UGX ${expense.amount.toLocaleString()}</td>
+            <td>${expense.date}</td>
+            <td>
+                <button class="btn-danger"
+                onclick="deleteExpense(${index})">
+                Delete
+                </button>
+            </td>
+        </tr>
         `;
+
     });
 
-    document.getElementById("totalExpense").textContent =
-        "UGX " + total.toLocaleString();
+    // Show total expenditure
+    let totalElement = document.getElementById("totalExpense");
+
+    if (!totalElement) {
+
+        totalElement = document.createElement("h2");
+        totalElement.id = "totalExpense";
+        totalElement.style.marginTop = "20px";
+
+        document.querySelector(".table-container").appendChild(totalElement);
+    }
+
+    totalElement.innerHTML =
+        "Total Expenditure: <span style='color:red;'>UGX "
+        + totalExpense.toLocaleString()
+        + "</span>";
+
 }
 
-// =============================
+// ===============================
 // Delete Expense
-// =============================
+// ===============================
+
 function deleteExpense(index) {
 
     if (confirm("Delete this expense?")) {
@@ -90,33 +119,5 @@ function deleteExpense(index) {
         displayExpenses();
 
     }
-}
-let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-function addExpense() {
-
-    const description = document.getElementById("description").value;
-    const category = document.getElementById("category").value;
-    const amount = document.getElementById("amount").value;
-    const date = document.getElementById("date").value;
-
-    if (!description || !category || !amount || !date) {
-        alert("Please fill in all fields.");
-        return;
-    }
-
-    expenses.push({
-        description,
-        category,
-        amount: Number(amount),
-        date
-    });
-
-    localStorage.setItem("expenses", JSON.stringify(expenses));
-
-    alert("Expense saved successfully!");
-
-    console.log(expenses);
-
-    document.getElementById("expenseForm").reset();
 }
