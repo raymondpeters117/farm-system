@@ -1,454 +1,539 @@
-/* =========================
-   GLOBAL STYLES
-========================= */
+/*=========================================
+        RAYP FARM MANAGEMENT SYSTEM
+        Modern Blue Theme
+==========================================*/
+
+/*========== RESET ==========*/
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Segoe UI, Tahoma, sans-serif;
+    font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
+    background:
+    linear-gradient(rgba(5,30,80,.55),rgba(5,30,80,.55)),
+    url("images/bg.jpg") center/cover no-repeat fixed;
     min-height:100vh;
-    background:linear-gradient(rgba(0,0,50,0.6), rgba(0,0,50,0.6)),
-    url("images/bg.jpg") no-repeat center center fixed;
-    background-size:cover;
     color:#fff;
 }
-/* ================= SIDEBAR NAVIGATION ================= */
-/* RESET */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Segoe UI, sans-serif;
-}
-/* RESET */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Segoe UI, sans-serif;
-}
 
-/* PAGE BACKGROUND */
-body{
-    background:#e3f2fd;
-}
+/*=========================================
+            LAYOUT
+==========================================*/
 
-/* MAIN LAYOUT */
-.layout{
+.wrapper{
     display:flex;
     min-height:100vh;
 }
 
-/* ================= SIDEBAR ================= */
+/*=========================================
+            SIDEBAR
+==========================================*/
 
 .sidebar{
-    width:240px;
-    background:#0d47a1;
-    display:flex;
-    flex-direction:column;
-    padding-top:20px;
-    box-shadow:3px 0 10px rgba(0,0,0,0.2);
-}
 
-.sidebar h2{
-    color:white;
-    text-align:center;
-    margin-bottom:25px;
-}
-
-.sidebar a{
-    padding:14px 20px;
-    color:white;
-    text-decoration:none;
-    transition:0.3s;
-    display:block;
-}
-
-.sidebar a:hover{
-    background:#1976d2;
-    padding-left:28px;
-}
-
-/* ================= CONTENT ================= */
-
-.content{
-    flex:1;
-    padding:25px;
-    background:#f5f9ff;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:768px){
-    .layout{
-        flex-direction:column;
-    }
-
-    .sidebar{
-        width:100%;
-        flex-direction:row;
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-    .sidebar a{
-        padding:10px;
-    }
-}
-/* PAGE BACKGROUND */
-body{
-    background:#e3f2fd;
-}
-
-/* ================= SIDEBAR ================= */
-
-.sidebar{
     position:fixed;
-    top:0;
-    left:0;
-    width:240px;
-    height:100vh;
-    background:#0d47a1;
-    display:flex;
-    flex-direction:column;
-    padding-top:20px;
-    box-shadow:4px 0 15px rgba(0,0,0,0.3);
-    z-index:1000;
-}
 
-/* TITLE */
-.sidebar h2{
-    color:white;
-    text-align:center;
-    margin-bottom:25px;
-}
-
-/* LINKS */
-.sidebar a{
-    padding:14px 20px;
-    color:white;
-    text-decoration:none;
-    display:block;
-    transition:0.3s;
-    font-weight:500;
-}
-
-/* hover effect */
-.sidebar a:hover{
-    background:#1976d2;
-    padding-left:28px;
-}
-
-/* ================= PAGE CONTENT ================= */
-
-.page-content{
-    margin-left:0;   /* IMPORTANT: stays independent */
-    padding:20px;
-}
-
-/* optional container for better layout */
-.container{
-    max-width:1100px;
-    margin:auto;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:768px){
-    .sidebar{
-        width:100%;
-        height:auto;
-        position:relative;
-        flex-direction:row;
-        justify-content:center;
-        flex-wrap:wrap;
-    }
-
-    .sidebar a{
-        padding:10px;
-    }
-}
-.sidebar{
-    position:fixed;
     left:0;
     top:0;
+
+    width:260px;
     height:100vh;
-    width:230px;
-    background:rgba(0, 70, 150, 0.95);
-    padding-top:20px;
+
+    background:#0a2d66;
+
+    border-right:1px solid rgba(255,255,255,.08);
+
     display:flex;
     flex-direction:column;
-    box-shadow:3px 0 15px rgba(0,0,0,0.3);
+
+    overflow-y:auto;
+
+    box-shadow:5px 0 20px rgba(0,0,0,.35);
+
 }
 
-.sidebar h2{
-    color:white;
+/* Logo */
+
+.logo{
+
+    padding:30px 20px;
+
     text-align:center;
-    margin-bottom:30px;
-    font-size:22px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
 }
 
-/* LINKS */
-.sidebar a{
-    display:block;
-    color:white;
-    text-decoration:none;
-    padding:14px 20px;
-    margin:5px 10px;
-    border-radius:8px;
-    transition:0.3s;
-    font-weight:500;
+.logo h1{
+
+    color:#ffffff;
+
+    font-size:30px;
+
+    letter-spacing:2px;
+
 }
 
-/* hover effect */
-.sidebar a:hover{
-    background:#1976d2;
-    padding-left:30px;
-}
+.logo p{
 
-/* active link (optional) */
-.sidebar a.active{
-    background:#0d47a1;
-}
+    color:#9fc8ff;
 
-/* ================= PAGE CONTENT SHIFT ================= */
+    margin-top:5px;
 
-.main-content{
-    margin-left:250px;
-    padding:20px;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:768px){
-    .sidebar{
-        width:100%;
-        height:auto;
-        position:relative;
-        flex-direction:row;
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-    .sidebar a{
-        margin:5px;
-    }
-
-    .main-content{
-        margin-left:0;
-    }
-}
-/* =========================
-   NAVIGATION BAR
-========================= */
-
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 30px;
-    background:rgba(0, 70, 150, 0.9);
-    box-shadow:0 5px 15px rgba(0,0,0,0.3);
-}
-
-.navbar h2{
-    color:#fff;
-    font-size:22px;
-}
-
-.navbar a{
-    color:#fff;
-    text-decoration:none;
-    margin-left:20px;
-    font-weight:500;
-    transition:0.3s;
-}
-
-.navbar a:hover{
-    color:#90caf9;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    text-align:center;
-    padding:15px;
-    background:rgba(0, 70, 150, 0.9);
-    color:#fff;
-    margin-top:40px;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
-button{
-    padding:12px 18px;
-    background:#1976d2;
-    color:#fff;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:15px;
-    transition:0.3s;
-}
-
-button:hover{
-    background:#0d47a1;
-    transform:translateY(-2px);
-}
-
-/* Small buttons */
-.btn-small{
-    padding:6px 12px;
     font-size:13px;
+
 }
 
-/* Danger button */
-.btn-danger{
-    background:#d32f2f;
+/* Navigation */
+
+.nav-menu{
+
+    flex:1;
+
+    padding:15px;
+
 }
 
-.btn-danger:hover{
-    background:#b71c1c;
+.nav-menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    margin-bottom:8px;
+
+    transition:.3s;
+
+    font-size:16px;
+
 }
 
-/* =========================
-   LOGIN / FORMS
-========================= */
+.nav-menu a:hover{
 
-.form-container{
-    width:360px;
-    max-width:90%;
-    margin:80px auto;
-    background:rgba(255,255,255,0.1);
-    padding:25px;
-    border-radius:15px;
-    backdrop-filter:blur(10px);
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+    background:#1565c0;
+
+    transform:translateX(6px);
+
 }
 
-input, select{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border:none;
-    border-radius:8px;
-    outline:none;
+.nav-menu a.active{
+
+    background:#1e88e5;
+
 }
 
-input:focus{
-    outline:2px solid #42a5f5;
-}
+/* Logout Button */
 
-/* =========================
-   DASHBOARD CARDS
-========================= */
+.sidebar-footer{
 
-.dashboard{
     padding:20px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
 }
+
+.sidebar-footer button{
+
+    width:100%;
+
+}
+
+/*=========================================
+        MAIN CONTENT
+==========================================*/
+
+.main{
+
+    margin-left:260px;
+
+    width:calc(100% - 260px);
+
+    padding:30px;
+
+}
+
+/*=========================================
+        TOP HEADER
+==========================================*/
+
+.header{
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(12px);
+
+    padding:18px 25px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.header h2{
+
+    color:white;
+
+}
+
+.user-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.user-profile img{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    border:3px solid #64b5f6;
+
+    object-fit:cover;
+
+}
+
+/*=========================================
+            DASHBOARD
+==========================================*/
 
 .cards{
+
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
-    gap:20px;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
 }
 
 .card{
-    background:rgba(0, 90, 180, 0.85);
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 8px 20px rgba(0,0,0,0.3);
-    transition:0.3s;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(12px);
+
+    padding:25px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
+
+    transition:.3s;
+
 }
 
 .card:hover{
-    transform:scale(1.05);
+
+    transform:translateY(-6px);
+
 }
 
 .card h3{
+
+    color:#90caf9;
+
     margin-bottom:10px;
-    color:#bbdefb;
+
 }
 
 .card p{
-    font-size:24px;
+
+    font-size:28px;
+
     font-weight:bold;
+
 }
 
-/* =========================
-   TABLES
-========================= */
+/*=========================================
+            TABLES
+==========================================*/
+
+.table-container{
+
+    background:white;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    margin-top:30px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+
+}
 
 table{
+
     width:100%;
+
     border-collapse:collapse;
-    margin-top:20px;
-    background:rgba(255,255,255,0.95);
-    color:#000;
-    border-radius:10px;
-    overflow:hidden;
+
+    color:#333;
+
 }
 
-table th{
-    background:#1976d2;
-    color:#fff;
-    padding:12px;
+th{
+
+    background:#1565c0;
+
+    color:white;
+
+    padding:16px;
+
 }
 
-table td{
-    padding:12px;
-    text-align:center;
+td{
+
+    padding:15px;
+
     border-bottom:1px solid #ddd;
+
 }
 
-table tr:hover{
-    background:#e3f2fd;
+tr:hover{
+
+    background:#f1f8ff;
+
 }
 
-/* =========================
-   PROFILE IMAGE (CIRCULAR)
-========================= */
+/*=========================================
+            FORMS
+==========================================*/
 
-.user-profile img{
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    object-fit:cover;
-    border:3px solid #90caf9;
+.form-container{
+
+    max-width:420px;
+
+    margin:auto;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(12px);
+
+    padding:30px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+
 }
 
-/* =========================
-   LINKS
-========================= */
+input,
+select{
 
-a{
-    color:#90caf9;
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    margin:12px 0;
+
+    outline:none;
+
 }
 
-a:hover{
-    color:#ffffff;
+input:focus{
+
+    box-shadow:0 0 8px #64b5f6;
+
 }
 
-/* =========================
-   RESPONSIVE DESIGN
-========================= */
+/*=========================================
+            BUTTONS
+==========================================*/
 
-@media(max-width:768px){
-    .navbar{
-        flex-direction:column;
-        text-align:center;
-    }
+button{
 
-    .cards{
-        grid-template-columns:1fr;
-    }
+    background:#1e88e5;
+
+    color:white;
+
+    border:none;
+
+    padding:13px 20px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:15px;
+
+}
+
+button:hover{
+
+    background:#1565c0;
+
+}
+
+.btn-danger{
+
+    background:#d32f2f;
+
+}
+
+.btn-danger:hover{
+
+    background:#b71c1c;
+
+}
+
+/*=========================================
+            FOOTER
+==========================================*/
+
+footer{
+
+    margin-top:40px;
+
+    text-align:center;
+
+    padding:18px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(10px);
+
+    border-radius:15px;
+
+}
+
+/*=========================================
+            SCROLLBAR
+==========================================*/
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#1565c0;
+
+    border-radius:20px;
+
+}
+
+/*=========================================
+        MOBILE RESPONSIVE
+==========================================*/
+
+@media(max-width:900px){
+
+.sidebar{
+
+    width:75px;
+
+}
+
+.logo h1,
+.logo p{
+
+    display:none;
+
+}
+
+.nav-menu a{
+
+    justify-content:center;
+
+    font-size:22px;
+
+}
+
+.nav-menu a span{
+
+    display:none;
+
+}
+
+.main{
+
+    margin-left:75px;
+
+    width:calc(100% - 75px);
+
+}
+
+}
+
+@media(max-width:700px){
+
+.sidebar{
+
+    position:relative;
+
+    width:100%;
+
+    height:auto;
+
+}
+
+.main{
+
+    width:100%;
+
+    margin-left:0;
+
+}
+
+.wrapper{
+
+    flex-direction:column;
+
+}
+
+.header{
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.cards{
+
+    grid-template-columns:1fr;
+
+}
+
 }
