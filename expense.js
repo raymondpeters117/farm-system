@@ -91,3 +91,32 @@ function deleteExpense(index) {
 
     }
 }
+let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
+function addExpense() {
+
+    const description = document.getElementById("description").value;
+    const category = document.getElementById("category").value;
+    const amount = document.getElementById("amount").value;
+    const date = document.getElementById("date").value;
+
+    if (!description || !category || !amount || !date) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    expenses.push({
+        description,
+        category,
+        amount: Number(amount),
+        date
+    });
+
+    localStorage.setItem("expenses", JSON.stringify(expenses));
+
+    alert("Expense saved successfully!");
+
+    console.log(expenses);
+
+    document.getElementById("expenseForm").reset();
+}
