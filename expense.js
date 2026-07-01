@@ -74,3 +74,12 @@ function deleteExpense(index) {
 
     displayExpenses();
 }
+let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
+expenses.push({
+    amount: Number(document.getElementById("amount").value),
+    reason: document.getElementById("reason").value,
+    date: document.getElementById("date").value
+});
+
+localStorage.setItem("expenses", JSON.stringify(expenses));
