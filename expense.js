@@ -140,3 +140,38 @@ function renderChart() {
         }
     });
 }
+let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
+window.onload = function () {
+    displayExpenses();
+};
+
+function displayExpenses() {
+
+    const table = document.getElementById("expenseTableBody");
+    table.innerHTML = "";
+
+    if (expenses.length === 0) {
+        table.innerHTML = `
+            <tr>
+                <td colspan="5" style="text-align:center;">
+                    No expenses saved yet
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    expenses.forEach((exp, index) => {
+
+        table.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${exp.item}</td>
+                <td>${exp.category}</td>
+                <td>UGX ${Number(exp.amount).toLocaleString()}</td>
+                <td>${exp.date}</td>
+            </tr>
+        `;
+    });
+}
