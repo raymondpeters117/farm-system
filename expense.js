@@ -1,15 +1,19 @@
 // ===============================
-// LOAD EXPENSES FROM LOCALSTORAGE
+// LOAD DATA
 // ===============================
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-// Run when page loads
+// Chart variable
+let expenseChart;
+
+// Run on load
 window.onload = function () {
     displayExpenses();
+    renderChart();
 };
 
 // ===============================
-// ADD EXPENSE (FORM SUBMIT)
+// ADD EXPENSE
 // ===============================
 document.getElementById("expenseForm").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -24,26 +28,20 @@ document.getElementById("expenseForm").addEventListener("submit", function (e) {
         return;
     }
 
-    const expense = {
-        item,
-        category,
-        amount,
-        date
-    };
-
-    expenses.push(expense);
+    expenses.push({ item, category, amount, date });
 
     localStorage.setItem("expenses", JSON.stringify(expenses));
 
     document.getElementById("expenseForm").reset();
 
     displayExpenses();
+    renderChart();
 
-    alert("Expense saved successfully!");
+    alert("Expense saved!");
 });
 
 // ===============================
-// DISPLAY EXPENSES IN TABLE
+// DISPLAY TABLE
 // ===============================
 function displayExpenses() {
 
@@ -73,22 +71,72 @@ function displayExpenses() {
         `;
     });
 
-    // Update total expenditure
     document.getElementById("totalExpense").textContent =
         "UGX " + total.toLocaleString();
 }
 
 // ===============================
-// DELETE EXPENSE
+// DELETE
 // ===============================
 function deleteExpense(index) {
 
-    if (confirm("Are you sure you want to delete this expense?")) {
+    if (confirm("Delete this expense?")) {
 
         expenses.splice(index, 1);
 
         localStorage.setItem("expenses", JSON.stringify(expenses));
 
         displayExpenses();
+        renderChart();
     }
+}
+
+// ===============================
+// MONTHLY CHART
+// ===============================
+function renderChart() {
+
+    const ctx = document.getElementById("expenseChart").getContext("2d");
+
+    // Group by month
+    let monthlyTotals = {};
+
+    expenses.forEach(exp => {
+
+        let month = exp.date.substring(0, 7); // YYYY-MM
+
+        if (!monthlyTotals[month]) {
+            monthlyTotals[month] = 0;
+        }
+
+        monthlyTotals[month] += exp.amount;
+    });
+
+    let labels = Object.keys(monthlyTotals).sort();
+    let data = labels.map(m => monthlyTotals[m]);
+
+    // Destroy old chart before creating new one
+    if (expenseChart) {
+        expenseChart.destroy();
+    }
+
+    expenseChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Monthly Expenses (UGX)",
+                data: data,
+                backgroundColor: "#1976d2"
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
 }
