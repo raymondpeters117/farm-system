@@ -18,3 +18,32 @@ function updateDashboard() {
     document.getElementById("workers").innerText = workers;
     document.getElementById("profit").innerText = profit;
 }
+// Income
+let income = JSON.parse(localStorage.getItem("income")) || [];
+
+// Expenses
+let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
+// Workers
+let workers = JSON.parse(localStorage.getItem("workers")) || [];
+
+// Calculate totals
+let totalIncome = income.reduce((sum, item) => sum + Number(item.amount), 0);
+
+let totalExpense = expenses.reduce((sum, item) => sum + Number(item.amount), 0);
+
+let profit = totalIncome - totalExpense;
+
+// Display
+
+document.getElementById("totalIncome").textContent =
+"UGX " + totalIncome.toLocaleString();
+
+document.getElementById("totalExpense").textContent =
+"UGX " + totalExpense.toLocaleString();
+
+document.getElementById("workerCount").textContent =
+workers.length;
+
+document.getElementById("profit").textContent =
+"UGX " + profit.toLocaleString();
