@@ -101,3 +101,12 @@ function logout() {
 
     window.location.href = "index.html"; // Login page
 }
+let income = JSON.parse(localStorage.getItem("income")) || [];
+
+income.push({
+    amount: Number(document.getElementById("amount").value),
+    source: document.getElementById("source").value,
+    date: document.getElementById("date").value
+});
+
+localStorage.setItem("income", JSON.stringify(income));
