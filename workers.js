@@ -68,3 +68,12 @@ function logout() {
 
     window.location.href = "index.html"; // Login page
 }
+let workers = JSON.parse(localStorage.getItem("workers")) || [];
+
+workers.push({
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    position: document.getElementById("position").value
+});
+
+localStorage.setItem("workers", JSON.stringify(workers));
