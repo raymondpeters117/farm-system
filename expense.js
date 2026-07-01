@@ -9,7 +9,7 @@ window.onload = function () {
 };
 
 // ===============================
-// ADD EXPENSE
+// ADD EXPENSE (FORM SUBMIT)
 // ===============================
 document.getElementById("expenseForm").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -20,7 +20,7 @@ document.getElementById("expenseForm").addEventListener("submit", function (e) {
     const date = document.getElementById("date").value;
 
     if (!item || !category || !amount || !date) {
-        alert("Please fill all fields");
+        alert("Please fill all fields!");
         return;
     }
 
@@ -43,7 +43,7 @@ document.getElementById("expenseForm").addEventListener("submit", function (e) {
 });
 
 // ===============================
-// DISPLAY EXPENSES
+// DISPLAY EXPENSES IN TABLE
 // ===============================
 function displayExpenses() {
 
@@ -73,7 +73,7 @@ function displayExpenses() {
         `;
     });
 
-    // Show total expense
+    // Update total expenditure
     document.getElementById("totalExpense").textContent =
         "UGX " + total.toLocaleString();
 }
