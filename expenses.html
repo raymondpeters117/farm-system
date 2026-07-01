@@ -3,106 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farm Management System | Expense Tracker</title>
+    <title>RAYP Farm Management System | Expense Tracker</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
+<div class="wrapper">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
         <div class="logo">
-            <h2>🌾 Farm Dashboard</h2>
+            <h1>RAYP</h1>
+            <p>Farm Management</p>
         </div>
 
-        <ul class="nav-links">
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="income.html">Income</a></li>
-            <li><a href="expenses.html" class="active">Expenses</a></li>
-            <li><a href="workers.html">Workers</a></li>
-            <li><a href="inventory.html">Inventory</a></li>
-            <li><a href="crops.html">Crops</a></li>
-            <li><a href="reports.html">Reports</a></li>
-            <li><a href="settings.html">Settings</a></li>
-            <li><a href="index.html" class="logout-btn">Logout</a></li>
-        </ul>
-    </nav>
+        <nav class="nav-menu">
 
-    <!-- Main Container -->
-    <div class="container">
+            <a href="dashboard.html">🏠 <span>Dashboard</span></a>
 
-        <!-- Profile -->
-       <div class="user-profile">
-    <img id="userPhoto" src="" alt="Profile Photo">
-            <h3>Welcome Back</h3>
-            <p>Farm Manager</p>
+            <a href="income.html">💰 <span>Income</span></a>
+
+            <a href="expenses.html" class="active">💸 <span>Expenses</span></a>
+
+            <a href="workers.html">👨‍🌾 <span>Workers</span></a>
+
+            <a href="inventory.html">📦 <span>Inventory</span></a>
+
+            <a href="crops.html">🌱 <span>Crops</span></a>
+
+            <a href="reports.html">📊 <span>Reports</span></a>
+
+            <a href="settings.html">⚙️ <span>Settings</span></a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <button class="btn-danger"
+                onclick="window.location.href='index.html'">
+
+                Logout
+
+            </button>
+
         </div>
 
-        <!-- Page Title -->
-        <div class="title">
-            <h1>Expense Tracker</h1>
-            <p>Manage and monitor all farm expenses.</p>
-        </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main">
+
+        <!-- Header -->
+
+        <header class="header">
+
+            <div>
+
+                <h2>Expense Tracker</h2>
+
+                <p>Record and manage all farm expenses.</p>
+
+            </div>
+
+            <div class="user-profile">
+
+                <img id="userPhoto"
+                     src="images/default-profile.png"
+                     alt="Profile Photo">
+
+                <div>
+
+                    <strong>Rayp</strong><br>
+
+                    <small>Farm Administrator</small>
+
+                </div>
+
+            </div>
+
+        </header>
 
         <!-- Expense Form -->
+
         <div class="form-container">
 
             <form id="expenseForm">
 
-                <div class="input-group">
-                    <label>Expense Item</label>
-                    <input
-                        type="text"
-                        id="item"
-                        placeholder="Enter Item"
-                        required>
-                </div>
+                <input
+                    type="text"
+                    id="description"
+                    placeholder="Expense Item"
+                    required>
 
-                <div class="input-group">
-                    <label>Category</label>
-                    <select id="category" required>
-                        <option value="">Select Category</option>
-                        <option>Seeds</option>
-                        <option>Fertilizer</option>
-                        <option>Pesticides</option>
-                        <option>Animal Feed</option>
-                        <option>Transport</option>
-                        <option>Workers</option>
-                        <option>Fuel</option>
-                        <option>Equipment</option>
-                        <option>Utilities</option>
-                        <option>Medical</option>
-                        <option>Other</option>
-                    </select>
-                </div>
+                <select id="category" required>
 
-                <div class="input-group">
-                    <label>Amount (UGX)</label>
-                    <input
-                        type="number"
-                        id="amount"
-                        placeholder="Enter Amount"
-                        required>
-                </div>
+                    <option value="">Select Category</option>
 
-                <div class="input-group">
-                    <label>Date</label>
-                    <input
-                        type="date"
-                        id="date"
-                        required>
-                </div>
+                    <option>Seeds</option>
+                    <option>Fertilizer</option>
+                    <option>Pesticides</option>
+                    <option>Animal Feed</option>
+                    <option>Transport</option>
+                    <option>Workers</option>
+                    <option>Fuel</option>
+                    <option>Equipment</option>
+                    <option>Utilities</option>
+                    <option>Medical</option>
+                    <option>Other</option>
 
-                <button type="submit">
+                </select>
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Amount (UGX)"
+                    required>
+
+                <input
+                    type="date"
+                    id="date"
+                    required>
+
+                <button type="button" onclick="addExpense()">
+
                     Save Expense
+
                 </button>
 
             </form>
 
         </div>
 
+        <br>
+
+        <!-- Total Expense Card -->
+
+        <div class="card">
+
+            <h3>Total Expenditure</h3>
+
+            <p id="totalExpense">UGX 0</p>
+
+        </div>
+
+        <br>
+
         <!-- Expense Table -->
+
         <div class="table-container">
 
             <table>
@@ -110,19 +162,24 @@
                 <thead>
 
                     <tr>
+
                         <th>#</th>
-                        <th>Item</th>
-                        <th>Category</th>
-                        <th>Amount (UGX)</th>
+
                         <th>Date</th>
+
+                        <th>Description</th>
+
+                        <th>Category</th>
+
+                        <th>Amount</th>
+
                         <th>Action</th>
+
                     </tr>
 
                 </thead>
 
-                <tbody id="expenseTableBody">
-
-                    <!-- Expenses appear here -->
+                <tbody id="expenseTable">
 
                 </tbody>
 
@@ -130,17 +187,19 @@
 
         </div>
 
-    </div>
+        <footer>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Farm Management System | All Rights Reserved.</p>
-    </footer>
+            © 2026 RAYP Farm Management System | All Rights Reserved
 
-    <!-- JavaScript -->
-    <script src="expenses.js"></script>
-    <script src="profile.js"></script>
-    
-    localStorage.getItem("expenses")
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="expenses.js"></script>
+
+<script src="profile.js"></script>
+
 </body>
 </html>
