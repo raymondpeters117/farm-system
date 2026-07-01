@@ -24,30 +24,20 @@
         <nav class="nav-menu">
 
             <a href="dashboard.html">🏠 <span>Dashboard</span></a>
-
             <a href="income.html">💰 <span>Income</span></a>
-
             <a href="expenses.html" class="active">💸 <span>Expenses</span></a>
-
             <a href="workers.html">👨‍🌾 <span>Workers</span></a>
-
             <a href="inventory.html">📦 <span>Inventory</span></a>
-
             <a href="crops.html">🌱 <span>Crops</span></a>
-
             <a href="reports.html">📊 <span>Reports</span></a>
-
             <a href="settings.html">⚙️ <span>Settings</span></a>
 
         </nav>
 
         <div class="sidebar-footer">
 
-            <button class="btn-danger"
-                onclick="window.location.href='index.html'">
-
-                Logout
-
+            <button class="btn-danger" onclick="window.location.href='index.html'">
+                🚪 Logout
             </button>
 
         </div>
@@ -58,52 +48,38 @@
 
     <main class="main">
 
-        <!-- Header -->
+        <!-- HEADER -->
 
         <header class="header">
 
             <div>
-
                 <h2>Expense Tracker</h2>
-
-                <p>Record and manage all farm expenses.</p>
-
+                <p>Record and manage all farm expenses</p>
             </div>
 
             <div class="user-profile">
 
-                <img id="userPhoto"
-                     src="images/default-profile.png"
-                     alt="Profile Photo">
+                <img id="userPhoto" src="images/default-profile.png" alt="Profile Photo">
 
                 <div>
-
                     <strong>Rayp</strong><br>
-
                     <small>Farm Administrator</small>
-
                 </div>
 
             </div>
 
         </header>
 
-        <!-- Expense Form -->
+        <!-- ================= FORM ================= -->
 
         <div class="form-container">
 
             <form id="expenseForm">
 
-                <input
-                    type="text"
-                    id="description"
-                    placeholder="Expense Item"
-                    required>
+                <input type="text" id="item" placeholder="Expense Item" required>
 
                 <select id="category" required>
-
                     <option value="">Select Category</option>
-
                     <option>Seeds</option>
                     <option>Fertilizer</option>
                     <option>Pesticides</option>
@@ -115,88 +91,65 @@
                     <option>Utilities</option>
                     <option>Medical</option>
                     <option>Other</option>
-
                 </select>
 
-                <input
-                    type="number"
-                    id="amount"
-                    placeholder="Amount (UGX)"
-                    required>
+                <input type="number" id="amount" placeholder="Amount (UGX)" required>
 
-                <input
-                    type="date"
-                    id="date"
-                    required>
+                <input type="date" id="date" required>
 
-               <button type="button" onclick="addExpense()">
-    Save Expense
-</button>
+                <button type="submit">
+                    Save Expense
+                </button>
 
             </form>
 
         </div>
 
-        <br>
-
-        <!-- Total Expense Card -->
+        <!-- ================= TOTAL ================= -->
 
         <div class="card">
-
             <h3>Total Expenditure</h3>
-
             <p id="totalExpense">UGX 0</p>
-
         </div>
 
         <br>
 
-        <!-- Expense Table -->
+        <!-- ================= TABLE ================= -->
 
         <div class="table-container">
 
             <table>
 
                 <thead>
-
                     <tr>
-
                         <th>#</th>
-
-                        <th>Date</th>
-
-                        <th>Description</th>
-
+                        <th>Item</th>
                         <th>Category</th>
-
                         <th>Amount</th>
-
+                        <th>Date</th>
                         <th>Action</th>
-
                     </tr>
-
                 </thead>
 
-                <tbody id="expenses Table">
-
-                </tbody>
+                <tbody id="expenseTableBody"></tbody>
 
             </table>
 
         </div>
 
+        <!-- ================= FOOTER ================= -->
+
         <footer>
-
             © 2026 RAYP Farm Management System | All Rights Reserved
-
         </footer>
 
     </main>
 
 </div>
 
-<script src="expenses.js"></script>
+<!-- ================= SCRIPTS ================= -->
 
+<script src="expenses.js"></script>
 <script src="profile.js"></script>
 
 </body>
