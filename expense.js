@@ -1,85 +1,93 @@
-// expense.js
+// =============================
+// Expense Management System
+// =============================
 
 // Load expenses from localStorage
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-// Display expenses when the page loads
-document.addEventListener("DOMContentLoaded", displayExpenses);
+// Display expenses when page loads
+displayExpenses();
 
-// Save expense
-document.getElementById("expenseForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+// =============================
+// Add Expense
+// =============================
+function addExpense() {
 
-    const item = document.getElementById("item").value.trim();
-    const category = document.getElementById("category").value;
-    const amount = document.getElementById("amount").value;
     const date = document.getElementById("date").value;
+    const description = document.getElementById("description").value.trim();
+    const amount = document.getElementById("amount").value;
 
-    if (item === "" || category === "" || amount === "" || date === "") {
+    if (date === "" || description === "" || amount === "") {
         alert("Please fill in all fields.");
         return;
     }
 
     const expense = {
-        item: item,
-        category: category,
-        amount: amount,
-        date: date
+        date: date,
+        description: description,
+        amount: Number(amount)
     };
 
     expenses.push(expense);
 
+    // Save to localStorage
     localStorage.setItem("expenses", JSON.stringify(expenses));
+
+    // Clear form
+    document.getElementById("date").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("amount").value = "";
 
     displayExpenses();
 
-    document.getElementById("expenseForm").reset();
-});
+    alert("Expense saved successfully.");
+}
 
-// Display all expenses
+// =============================
+// Display Expenses
+// =============================
 function displayExpenses() {
 
-    const tableBody = document.getElementById("expenseTableBody");
-    tableBody.innerHTML = "";
+    const table = document.getElementById("expenseTable");
 
-    expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+    table.innerHTML = "";
+
+    let total = 0;
 
     expenses.forEach((expense, index) => {
 
-        const row = document.createElement("tr");
+        total += Number(expense.amount);
 
-        row.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${expense.item}</td>
-            <td>${expense.category}</td>
-            <td>${Number(expense.amount).toLocaleString()}</td>
-            <td>${expense.date}</td>
-            <td>
-                <button onclick="deleteExpense(${index})">
-                    Delete
-                </button>
-            </td>
+        table.innerHTML += `
+            <tr>
+                <td>${expense.date}</td>
+                <td>${expense.description}</td>
+                <td>UGX ${expense.amount.toLocaleString()}</td>
+                <td>
+                    <button onclick="deleteExpense(${index})">
+                        Delete
+                    </button>
+                </td>
+            </tr>
         `;
-
-        tableBody.appendChild(row);
     });
+
+    document.getElementById("totalExpense").textContent =
+        "UGX " + total.toLocaleString();
 }
 
-// Delete expense
+// =============================
+// Delete Expense
+// =============================
 function deleteExpense(index) {
 
-    expenses.splice(index, 1);
+    if (confirm("Delete this expense?")) {
 
-    localStorage.setItem("expenses", JSON.stringify(expenses));
+        expenses.splice(index, 1);
 
-    displayExpenses();
+        localStorage.setItem("expenses", JSON.stringify(expenses));
+
+        displayExpenses();
+
+    }
 }
-let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
-
-expenses.push({
-    amount: Number(document.getElementById("amount").value),
-    reason: document.getElementById("reason").value,
-    date: document.getElementById("date").value
-});
-
-localStorage.setItem("expenses", JSON.stringify(expenses));
