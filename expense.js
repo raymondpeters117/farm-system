@@ -1,22 +1,17 @@
 // ===============================
-// RAYP FARM MANAGEMENT SYSTEM
-// Expense Management
+// LOAD EXPENSES FROM LOCALSTORAGE
 // ===============================
-
-// Load expenses from localStorage
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-// Display expenses when page loads
+// Run when page loads
 window.onload = function () {
     displayExpenses();
 };
 
 // ===============================
-// Save Expense
+// ADD EXPENSE
 // ===============================
-
 document.getElementById("expenseForm").addEventListener("submit", function (e) {
-
     e.preventDefault();
 
     const item = document.getElementById("item").value.trim();
@@ -24,8 +19,8 @@ document.getElementById("expenseForm").addEventListener("submit", function (e) {
     const amount = Number(document.getElementById("amount").value);
     const date = document.getElementById("date").value;
 
-    if (item === "" || category === "" || amount <= 0 || date === "") {
-        alert("Please fill in all fields correctly.");
+    if (!item || !category || !amount || !date) {
+        alert("Please fill all fields");
         return;
     }
 
@@ -38,86 +33,62 @@ document.getElementById("expenseForm").addEventListener("submit", function (e) {
 
     expenses.push(expense);
 
-    // Save to localStorage
     localStorage.setItem("expenses", JSON.stringify(expenses));
 
-    // Refresh table
-    displayExpenses();
-
-    // Clear form
     document.getElementById("expenseForm").reset();
 
-    alert("Expense saved successfully!");
+    displayExpenses();
 
+    alert("Expense saved successfully!");
 });
 
 // ===============================
-// Display Expenses
+// DISPLAY EXPENSES
 // ===============================
-
 function displayExpenses() {
 
     const table = document.getElementById("expenseTableBody");
 
     table.innerHTML = "";
 
-    let totalExpense = 0;
+    let total = 0;
 
-    expenses.forEach((expense, index) => {
+    expenses.forEach((exp, index) => {
 
-        totalExpense += expense.amount;
+        total += exp.amount;
 
         table.innerHTML += `
-        <tr>
-            <td>${index + 1}</td>
-            <td>${expense.item}</td>
-            <td>${expense.category}</td>
-            <td>UGX ${expense.amount.toLocaleString()}</td>
-            <td>${expense.date}</td>
-            <td>
-                <button class="btn-danger"
-                onclick="deleteExpense(${index})">
-                Delete
-                </button>
-            </td>
-        </tr>
+            <tr>
+                <td>${index + 1}</td>
+                <td>${exp.item}</td>
+                <td>${exp.category}</td>
+                <td>UGX ${exp.amount.toLocaleString()}</td>
+                <td>${exp.date}</td>
+                <td>
+                    <button class="btn-danger" onclick="deleteExpense(${index})">
+                        Delete
+                    </button>
+                </td>
+            </tr>
         `;
-
     });
 
-    // Show total expenditure
-    let totalElement = document.getElementById("totalExpense");
-
-    if (!totalElement) {
-
-        totalElement = document.createElement("h2");
-        totalElement.id = "totalExpense";
-        totalElement.style.marginTop = "20px";
-
-        document.querySelector(".table-container").appendChild(totalElement);
-    }
-
-    totalElement.innerHTML =
-        "Total Expenditure: <span style='color:red;'>UGX "
-        + totalExpense.toLocaleString()
-        + "</span>";
-
+    // Show total expense
+    document.getElementById("totalExpense").textContent =
+        "UGX " + total.toLocaleString();
 }
 
 // ===============================
-// Delete Expense
+// DELETE EXPENSE
 // ===============================
-
 function deleteExpense(index) {
 
-    if (confirm("Delete this expense?")) {
+    if (confirm("Are you sure you want to delete this expense?")) {
 
         expenses.splice(index, 1);
 
         localStorage.setItem("expenses", JSON.stringify(expenses));
 
         displayExpenses();
-
     }
-
 }
