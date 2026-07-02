@@ -1,52 +1,94 @@
-let incomeRecords =
-JSON.parse(localStorage.getItem("income")) || [];
+// ===============================
+// RAYP FARM MANAGEMENT SYSTEM
+// income.js
+// ===============================
 
-const form =
-document.getElementById("incomeForm");
+// Load income records from localStorage
+let incomeRecords = JSON.parse(localStorage.getItem("income")) || [];
 
-const table =
-document.getElementById("incomeTable");
+// Get HTML elements
+const form = document.getElementById("incomeForm");
+const table = document.getElementById("incomeTable");
+const searchInput = document.getElementById("searchIncome");
 
-function saveIncome(){
-    localStorage.setItem(
-        "income",
-        JSON.stringify(incomeRecords)
-    );
+// Create Total Income display if it doesn't exist
+let totalDisplay = document.getElementById("totalIncome");
+
+if (!totalDisplay) {
+    totalDisplay = document.createElement("h2");
+    totalDisplay.id = "totalIncome";
+    totalDisplay.style.margin = "15px 0";
+    totalDisplay.style.color = "green";
+
+    const tableSection = document.querySelector(".table-section");
+    tableSection.insertBefore(totalDisplay, tableSection.firstChild);
 }
 
-function displayIncome(){
+// Save to localStorage
+function saveIncome() {
+    localStorage.setItem("income", JSON.stringify(incomeRecords));
+}
+
+// Display all income
+function displayIncome(records = incomeRecords) {
 
     table.innerHTML = "";
 
-    incomeRecords.forEach((income,index)=>{
+    if (records.length === 0) {
+        table.innerHTML = `
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    No income records found.
+                </td>
+            </tr>
+        `;
+        updateTotal(records);
+        return;
+    }
+
+    records.forEach((income, index) => {
 
         table.innerHTML += `
-        <tr>
-            <td>${income.source}</td>
-            <td>${income.amount}</td>
-            <td>${income.date}</td>
-            <td>
-                <button onclick="deleteIncome(${index})">
-                Delete
-                </button>
-            </td>
-        </tr>
+            <tr>
+                <td>${income.source}</td>
+                <td>UGX ${Number(income.amount).toLocaleString()}</td>
+                <td>${income.date}</td>
+                <td>
+                    <button onclick="editIncome(${index})">✏ Edit</button>
+                    <button onclick="deleteIncome(${index})">🗑 Delete</button>
+                </td>
+            </tr>
         `;
+
     });
+
+    updateTotal(records);
 }
 
-form.addEventListener("submit",(e)=>{
+// Update total income
+function updateTotal(records = incomeRecords) {
+
+    const total = records.reduce((sum, income) => {
+        return sum + Number(income.amount);
+    }, 0);
+
+    totalDisplay.innerHTML =
+        `Total Income: <span style="color:blue;">UGX ${total.toLocaleString()}</span>`;
+}
+
+// Add new income
+form.addEventListener("submit", function (e) {
 
     e.preventDefault();
 
-    const source =
-    document.getElementById("source").value;
+    const source = document.getElementById("source").value.trim();
+    const amount = Number(document.getElementById("amount").value);
+    const date = document.getElementById("date").value;
 
-    const amount =
-    document.getElementById("amount").value;
-
-    const date =
-    document.getElementById("date").value;
+    if (!source || amount <= 0 || !date) {
+        alert("Please complete all fields.");
+        return;
+    }
 
     incomeRecords.push({
         source,
@@ -58,55 +100,70 @@ form.addEventListener("submit",(e)=>{
     displayIncome();
 
     form.reset();
-
 });
 
-function deleteIncome(index){
+// Delete income
+function deleteIncome(index) {
 
-    incomeRecords.splice(index,1);
+    if (confirm("Delete this income record?")) {
+
+        incomeRecords.splice(index, 1);
+
+        saveIncome();
+        displayIncome();
+    }
+}
+
+// Edit income
+function editIncome(index) {
+
+    const income = incomeRecords[index];
+
+    document.getElementById("source").value = income.source;
+    document.getElementById("amount").value = income.amount;
+    document.getElementById("date").value = income.date;
+
+    incomeRecords.splice(index, 1);
 
     saveIncome();
     displayIncome();
 
-}
-
-document.getElementById("searchIncome")
-.addEventListener("keyup",function(){
-
-    let search =
-    this.value.toLowerCase();
-
-    let rows =
-    document.querySelectorAll("#incomeTable tr");
-
-    rows.forEach(row=>{
-
-        let text =
-        row.innerText.toLowerCase();
-
-        row.style.display =
-        text.includes(search)
-        ? ""
-        : "none";
-
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
     });
-
-});
-
-displayIncome();
-function logout() {
-    localStorage.removeItem("loggedInUser");
-
-    alert("Logged out successfully!");
-
-    window.location.href = "index.html"; // Login page
 }
-let income = JSON.parse(localStorage.getItem("income")) || [];
 
-income.push({
-    amount: Number(document.getElementById("amount").value),
-    source: document.getElementById("source").value,
-    date: document.getElementById("date").value
+// Search income
+searchInput.addEventListener("keyup", function () {
+
+    const search = this.value.toLowerCase();
+
+    const filtered = incomeRecords.filter(income =>
+
+        income.source.toLowerCase().includes(search) ||
+        income.date.toLowerCase().includes(search) ||
+        income.amount.toString().includes(search)
+
+    );
+
+    displayIncome(filtered);
+
 });
 
-localStorage.setItem("income", JSON.stringify(income));
+// Logout
+function logout() {
+
+    if (confirm("Are you sure you want to logout?")) {
+
+        localStorage.removeItem("loggedInUser");
+
+        alert("Logged out successfully.");
+
+        window.location.href = "index.html";
+    }
+
+}
+
+// Initial display
+displayIncome();
