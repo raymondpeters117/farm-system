@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workers Management</title>
+    <title>Workers Management | RAYP Farm</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -21,18 +22,18 @@
         </div>
 
         <nav class="nav-menu">
-            <a href="dashboard.html">🏠 <span>Dashboard</span></a>
-            <a href="income.html">💰 <span>Income</span></a>
-            <a href="expenses.html">💸 <span>Expenses</span></a>
-            <a href="workers.html" class="active">👨‍🌾 <span>Workers</span></a>
-            <a href="inventory.html">📦 <span>Inventory</span></a>
-            <a href="crops.html">🌱 <span>Crops</span></a>
-            <a href="reports.html">📊 <span>Reports</span></a>
-            <a href="settings.html">⚙️ <span>Settings</span></a>
+            <a href="dashboard.html">🏠 Dashboard</a>
+            <a href="income.html">💰 Income</a>
+            <a href="expenses.html">💸 Expenses</a>
+            <a href="workers.html" class="active">👨‍🌾 Workers</a>
+            <a href="inventory.html">📦 Inventory</a>
+            <a href="crops.html">🌱 Crops</a>
+            <a href="reports.html">📊 Reports</a>
+            <a href="settings.html">⚙️ Settings</a>
         </nav>
 
         <div class="sidebar-footer">
-            <button class="btn-danger" onclick="window.location.href='index.html'">
+            <button class="btn-danger" onclick="logout()">
                 🚪 Logout
             </button>
         </div>
@@ -42,44 +43,76 @@
     <!-- Main Content -->
     <main class="main">
 
-        <div class="user-profile">
-            <img id="userPhoto" src="" alt="Profile Photo">
+        <!-- Top Bar -->
+        <div class="top-bar">
+
+            <h2>👨‍🌾 Workers Management</h2>
+
+            <div class="user-profile">
+                <img id="userPhoto"
+                     src="images/default-profile.png"
+                     alt="Profile Photo">
+            </div>
+
         </div>
 
-        <h1>Workers Management</h1>
+        <!-- Summary Card -->
+        <div class="summary-card">
 
-        <div class="form-section">
+            <h3>Total Workers Salary</h3>
+            <h2 id="totalSalary">UGX 0</h2>
+
+        </div>
+
+        <!-- Form -->
+        <div class="form-container">
 
             <div class="worker-form">
 
-                <input type="text" id="workerName" placeholder="Worker Name">
+                <input type="text" id="workerName" placeholder="Worker Name" required>
 
-                <input type="text" id="workerRole" placeholder="Role">
+                <input type="text" id="workerRole" placeholder="Role" required>
 
-                <input type="number" id="workerSalary" placeholder="Salary">
+                <input type="number" id="workerSalary" placeholder="Salary (UGX)" required>
 
-                <input type="tel" id="workerContact" placeholder="Contact">
+                <input type="tel" id="workerContact" placeholder="Contact" required>
 
-                <button onclick="saveWorker()">Save Worker</button>
+                <button onclick="saveWorker()">
+                    ➕ Save Worker
+                </button>
 
             </div>
 
         </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Role</th>
-                    <th>Salary (UGX)</th>
-                    <th>Contact</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+        <!-- Search -->
+        <div class="table-tools">
 
-            <tbody id="workersTable"></tbody>
+            <input type="text" id="searchWorker" placeholder="🔍 Search Workers">
 
-        </table>
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Salary</th>
+                        <th>Contact</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="workersTable"></tbody>
+
+            </table>
+
+        </div>
 
     </main>
 
@@ -91,4 +124,3 @@
 </body>
 
 </html>
-0750000990
