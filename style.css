@@ -125,7 +125,155 @@ body{
     font-size:16px;
 
 }
+/* ===========================
+   Expense Page
+=========================== */
 
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.user-profile img{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #2c7a2c;
+}
+
+.summary-card{
+    background:#ffffff;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.summary-card h3{
+    margin:0;
+    color:#666;
+}
+
+.summary-card h2{
+    color:green;
+    margin-top:10px;
+}
+
+.form-container{
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+#expenseForm{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+}
+
+#expenseForm input,
+#expenseForm select{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+#expenseForm button{
+    background:#28a745;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+#expenseForm button:hover{
+    background:#1f8c37;
+}
+
+.table-tools{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:15px;
+    flex-wrap:wrap;
+}
+
+.table-tools input{
+    flex:1;
+    min-width:250px;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.table-tools button{
+    padding:10px 18px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#007bff;
+    color:white;
+}
+
+.table-tools button:hover{
+    background:#005ecb;
+}
+
+.table-container{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    overflow:auto;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+    background:#2c7a2c;
+    color:white;
+}
+
+th,td{
+    padding:12px;
+    text-align:left;
+    border-bottom:1px solid #ddd;
+}
+
+tbody tr:hover{
+    background:#f5f5f5;
+}
+
+td button{
+    padding:7px 12px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    margin-right:5px;
+}
+
+td button:first-child{
+    background:#ffc107;
+}
+
+td button:last-child{
+    background:#dc3545;
+    color:white;
+}
+
+td button:hover{
+    opacity:.9;
+}
 .nav-menu a:hover{
 
     background:#1565c0;
