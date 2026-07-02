@@ -1,42 +1,95 @@
 // ===============================
-// RAYP DASHBOARD SYSTEM
+// RAYP FARM MANAGEMENT SYSTEM
+// DASHBOARD JS (FULL VERSION)
 // ===============================
 
-// Load data
+// Load data from localStorage safely
 let income = JSON.parse(localStorage.getItem("income")) || [];
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-// Sum helper
-function sum(arr) {
-    return arr.reduce((total, item) => total + Number(item.amount || 0), 0);
+// ===============================
+// SUM FUNCTION (SAFE)
+// ===============================
+function sumAmount(arr) {
+    return arr.reduce((total, item) => {
+        return total + Number(item.amount || 0);
+    }, 0);
 }
 
-// Calculate values
-const totalIncome = sum(income);
-const totalExpenses = sum(expenses);
-const profit = totalIncome - totalExpenses;
+// ===============================
+// CALCULATIONS
+// ===============================
+let totalIncome = sumAmount(income);
+let totalExpenses = sumAmount(expenses);
+let profit = totalIncome - totalExpenses;
 
-// Update UI
+// ===============================
+// FORMAT CURRENCY
+// ===============================
+function formatUGX(value) {
+    return "UGX " + Number(value).toLocaleString();
+}
+
+// ===============================
+// UPDATE DASHBOARD UI
+// ===============================
 function updateDashboard() {
 
-    document.getElementById("totalIncome").textContent =
-        "UGX " + totalIncome.toLocaleString();
-
-    document.getElementById("totalExpenses").textContent =
-        "UGX " + totalExpenses.toLocaleString();
-
+    const incomeEl = document.getElementById("totalIncome");
+    const expenseEl = document.getElementById("totalExpenses");
     const profitEl = document.getElementById("totalProfit");
 
-    profitEl.textContent =
-        "UGX " + profit.toLocaleString();
+    if (incomeEl) {
+        incomeEl.textContent = formatUGX(totalIncome);
+    }
 
-    profitEl.style.color = profit >= 0 ? "green" : "red";
+    if (expenseEl) {
+        expenseEl.textContent = formatUGX(totalExpenses);
+    }
+
+    if (profitEl) {
+        profitEl.textContent = formatUGX(profit);
+
+        // Profit color indicator
+        if (profit > 0) {
+            profitEl.style.color = "green";
+        } 
+        else if (profit < 0) {
+            profitEl.style.color = "red";
+        } 
+        else {
+            profitEl.style.color = "black";
+        }
+    }
 }
 
-// Run
+// ===============================
+// AUTO REFRESH FUNCTION
+// (so dashboard updates after changes)
+// ===============================
+function refreshDashboardData() {
+
+    income = JSON.parse(localStorage.getItem("income")) || [];
+    expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
+    totalIncome = sumAmount(income);
+    totalExpenses = sumAmount(expenses);
+    profit = totalIncome - totalExpenses;
+
+    updateDashboard();
+}
+
+// ===============================
+// AUTO RUN ON PAGE LOAD
+// ===============================
 updateDashboard();
 
-// Logout (optional)
+// Optional: auto refresh every 2 seconds
+setInterval(refreshDashboardData, 2000);
+
+// ===============================
+// LOGOUT FUNCTION
+// ===============================
 function logout() {
     localStorage.removeItem("loggedInUser");
     window.location.href = "index.html";
