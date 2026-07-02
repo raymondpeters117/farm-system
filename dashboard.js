@@ -1,95 +1,90 @@
 // ===============================
-// RAYP FARM MANAGEMENT SYSTEM
-// DASHBOARD JS (FULL VERSION)
+// RAYP DASHBOARD (FIXED + ROBUST)
 // ===============================
 
-// Load data from localStorage safely
+// Load safely
 let income = JSON.parse(localStorage.getItem("income")) || [];
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-// ===============================
-// SUM FUNCTION (SAFE)
-// ===============================
-function sumAmount(arr) {
-    return arr.reduce((total, item) => {
-        return total + Number(item.amount || 0);
+// -------------------------------
+// SAFE AMOUNT READER
+// (handles different key names)
+// -------------------------------
+function getAmount(item) {
+    return Number(
+        item.amount ??
+        item.expense ??
+        item.cost ??
+        item.value ??
+        0
+    );
+}
+
+// -------------------------------
+// SUM FUNCTION
+// -------------------------------
+function sum(data) {
+    return data.reduce((total, item) => {
+        return total + getAmount(item);
     }, 0);
 }
 
-// ===============================
+// -------------------------------
 // CALCULATIONS
-// ===============================
-let totalIncome = sumAmount(income);
-let totalExpenses = sumAmount(expenses);
-let profit = totalIncome - totalExpenses;
+// -------------------------------
+function calculate() {
 
-// ===============================
-// FORMAT CURRENCY
-// ===============================
-function formatUGX(value) {
-    return "UGX " + Number(value).toLocaleString();
+    const totalIncome = sum(income);
+    const totalExpenses = sum(expenses);
+    const profit = totalIncome - totalExpenses;
+
+    return { totalIncome, totalExpenses, profit };
 }
 
-// ===============================
-// UPDATE DASHBOARD UI
-// ===============================
+// -------------------------------
+// UPDATE UI
+// -------------------------------
 function updateDashboard() {
+
+    const { totalIncome, totalExpenses, profit } = calculate();
 
     const incomeEl = document.getElementById("totalIncome");
     const expenseEl = document.getElementById("totalExpenses");
     const profitEl = document.getElementById("totalProfit");
 
     if (incomeEl) {
-        incomeEl.textContent = formatUGX(totalIncome);
+        incomeEl.textContent = "UGX " + totalIncome.toLocaleString();
     }
 
     if (expenseEl) {
-        expenseEl.textContent = formatUGX(totalExpenses);
+        expenseEl.textContent = "UGX " + totalExpenses.toLocaleString();
     }
 
     if (profitEl) {
-        profitEl.textContent = formatUGX(profit);
+        profitEl.textContent = "UGX " + profit.toLocaleString();
 
-        // Profit color indicator
-        if (profit > 0) {
-            profitEl.style.color = "green";
-        } 
-        else if (profit < 0) {
-            profitEl.style.color = "red";
-        } 
-        else {
-            profitEl.style.color = "black";
-        }
+        if (profit > 0) profitEl.style.color = "green";
+        else if (profit < 0) profitEl.style.color = "red";
+        else profitEl.style.color = "black";
     }
 }
 
-// ===============================
-// AUTO REFRESH FUNCTION
-// (so dashboard updates after changes)
-// ===============================
-function refreshDashboardData() {
-
+// -------------------------------
+// AUTO REFRESH (IMPORTANT FIX)
+// -------------------------------
+function refreshData() {
     income = JSON.parse(localStorage.getItem("income")) || [];
     expenses = JSON.parse(localStorage.getItem("expenses")) || [];
-
-    totalIncome = sumAmount(income);
-    totalExpenses = sumAmount(expenses);
-    profit = totalIncome - totalExpenses;
-
     updateDashboard();
 }
 
-// ===============================
-// AUTO RUN ON PAGE LOAD
-// ===============================
+// Run immediately
 updateDashboard();
 
-// Optional: auto refresh every 2 seconds
-setInterval(refreshDashboardData, 2000);
+// Keep synced
+setInterval(refreshData, 1000);
 
-// ===============================
-// LOGOUT FUNCTION
-// ===============================
+// Logout
 function logout() {
     localStorage.removeItem("loggedInUser");
     window.location.href = "index.html";
