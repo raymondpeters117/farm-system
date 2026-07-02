@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<!-- saved from url=(0053)file:///C:/Users/FIK%20RED/Desktop/FARM/settings.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-    <title>Settings</title>
-		<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="expense.css">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | RAYP Farm</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
-	<div class="wrapper">
 
-    <!-- ================= SIDEBAR ================= -->
+<body>
 
+<div class="wrapper">
+
+    <!-- Sidebar -->
     <aside class="sidebar">
 
         <div class="logo">
@@ -18,115 +23,93 @@
 
         <nav class="nav-menu">
 
-            <a href="dashboard.html" class="active">
-                🏠 <span>Dashboard</span>
-            </a>
-
-            <a href="income.html">
-                💰 <span>Income</span>
-            </a>
-
-            <a href="expenses.html">
-                💸 <span>Expenses</span>
-            </a>
-
-            <a href="workers.html">
-                👨‍🌾 <span>Workers</span>
-            </a>
-
-            <a href="inventory.html">
-                📦 <span>Inventory</span>
-            </a>
-
-            <a href="crops.html">
-                🌱 <span>Crops</span>
-            </a>
-
-            <a href="reports.html">
-                📊 <span>Reports</span>
-            </a>
-
-            <a href="settings.html">
-                ⚙️ <span>Settings</span>
-            </a>
+            <a href="dashboard.html">🏠 Dashboard</a>
+            <a href="income.html">💰 Income</a>
+            <a href="expenses.html">💸 Expenses</a>
+            <a href="workers.html">👨‍🌾 Workers</a>
+            <a href="inventory.html">📦 Inventory</a>
+            <a href="crops.html">🌱 Crops</a>
+            <a href="reports.html">📊 Reports</a>
+            <a href="settings.html" class="active">⚙️ Settings</a>
 
         </nav>
 
         <div class="sidebar-footer">
-
-            <button class="btn-danger"
-                onclick="window.location.href='index.html'">
-
+            <button class="btn-danger" onclick="logout()">
                 🚪 Logout
-
             </button>
-
         </div>
 
     </aside>
 
- <main class="main">
+    <!-- Main Content -->
+    <main class="main">
 
+        <!-- Header -->
+        <div class="top-bar">
 
-        <div class="sidebar-footer">
+            <h2>⚙️ User Management</h2>
+
+            <div class="user-profile">
+                <img id="userPhoto"
+                     src="images/default-profile.png"
+                     alt="Profile Photo">
+            </div>
 
         </div>
 
-    </aside>
+        <!-- Create Account -->
+        <div class="settings-card">
 
- <main class="main">
+            <h3>Create New Account</h3>
 
+            <div class="account-section">
 
-<body>
-   
+                <input type="text" id="fullName" placeholder="Full Name" required>
 
-<div class="user-profile">
-    <img id="userPhoto" src="" alt="Profile Photo">
+                <input type="text" id="username" placeholder="Username" required>
+
+                <input type="password" id="password" placeholder="Password" required>
+
+                <select id="role">
+                    <option value="Admin">Admin</option>
+                    <option value="Cashier">Cashier</option>
+                </select>
+
+                <label>Profile Picture</label>
+                <input type="file" id="profilePhoto" accept="image/*">
+
+                <img id="previewImage"
+                     src=""
+                     alt="Preview"
+                     style="width:120px;height:120px;border-radius:50%;display:none;object-fit:cover;margin-top:10px;">
+
+                <button onclick="saveAccount()">
+                    💾 Save Account
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Saved Accounts -->
+        <div class="accounts-list">
+
+            <h3>Saved Accounts</h3>
+
+            <div id="accountsList">
+                <!-- Dynamic accounts appear here -->
+            </div>
+
+        </div>
+
+    </main>
+
 </div>
-</div>
-<h2>User Management</h2>
-<section class="settings-card">
-    <h2>Create New Account</h2>
 
-    <section class="account-section">
-    <input type="text" id="fullName" placeholder="Full Name" required>
-
-    <input type="text" id="username" placeholder="Username" required>
-
-    <input type="password" id="password" placeholder="Password" required>
-
-    <select id="role">
-        <option value="Admin">Admin</option>
-        <option value="Cashier">Cashier</option>
-    </select>
-
-    <label>Profile Picture</label>
-    <input type="file" id="profilePhoto" accept="image/*">
-
-    <br><br>
-
-    <img id="previewImage"
-         src=""
-         alt="Preview"
-         style="width:120px;height:120px;border-radius:50%;display:none;object-fit:cover;">
-
-    <br><br>
-
-    <button type="button" onclick="saveAccount()" style="border-radius: 15px; border: medium solid #FF0000; height: 42px; background-color: #00FFFF; width: 12%;">
-    Save Account
-</button>
-</section>
-    <h3>Saved Accounts</h3>
-  <div id="accountsList">
-        <div class="account-item">
-            <p><strong>Rayp</strong> (admin)</p>
-            <button onclick="deleteAccount(0)">
-                Delete
-            </button>
-        </div>
-        </div>
-</section>
 <script src="settings.js"></script>
 <script src="auth.js"></script>
-<script src="profile.js></script>
-</body></html>
+<script src="profile.js"></script>
+
+</body>
+</html>
