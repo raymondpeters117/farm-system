@@ -22,8 +22,8 @@
 
         <nav class="nav-menu">
             <a href="dashboard.html">🏠 <span>Dashboard</span></a>
-            <a href="income.html" class="active">💰 <span>Income</span></a>
-            <a href="expenses.html">💸 <span>Expenses</span></a>
+            <a href="income.html">💰 <span>Income</span></a>
+            <a href="expenses.html" class="active">💸 <span>Expenses</span></a>
             <a href="workers.html">👨‍🌾 <span>Workers</span></a>
             <a href="inventory.html">📦 <span>Inventory</span></a>
             <a href="crops.html">🌱 <span>Crops</span></a>
@@ -42,11 +42,8 @@
     <!-- Main Content -->
     <main class="main">
 
+        <!-- Top Bar -->
         <div class="top-bar">
-            <div class="user-profile">
-                <img id="userPhoto" src="images/default-profile.png" alt="Profile Photo">
-            </div>
-        </div>
 
             <h2>Expense Records</h2>
 
@@ -58,8 +55,7 @@
 
         </div>
 
-        <!-- Total Card -->
-
+        <!-- Total Expenses -->
         <div class="summary-card">
 
             <h3>Total Expenses</h3>
@@ -69,21 +65,15 @@
         </div>
 
         <!-- Expense Form -->
-
         <div class="form-container">
 
             <form id="expenseForm">
 
-                <input
-                    type="text"
-                    id="item"
-                    placeholder="Expense Item"
-                    required>
+                <input type="text" id="item" placeholder="Expense Item" required>
 
                 <select id="category" required>
 
                     <option value="">Select Category</option>
-
                     <option>Seeds</option>
                     <option>Fertilizer</option>
                     <option>Pesticides</option>
@@ -98,74 +88,44 @@
 
                 </select>
 
-                <input
-                    type="number"
-                    id="amount"
-                    placeholder="Amount (UGX)"
-                    required>
+                <input type="number" id="amount" placeholder="Amount (UGX)" required>
 
-                <input
-                    type="date"
-                    id="date"
-                    required>
+                <input type="date" id="date" required>
 
-                <button type="submit">
-
-                    ➕ Save Expense
-
-                </button>
+                <button type="submit">➕ Save Expense</button>
 
             </form>
 
         </div>
 
-        <!-- Search -->
-
+        <!-- Search + Tools -->
         <div class="table-tools">
 
-            <input
-                type="text"
-                id="searchExpense"
-                placeholder="🔍 Search Expenses">
+            <input type="text" id="searchExpense" placeholder="🔍 Search Expenses">
 
-            <button onclick="exportExpensesCSV()">
+            <button onclick="exportExpensesCSV()">📄 Export CSV</button>
 
-                📄 Export CSV
-
-            </button>
-
-            <button onclick="window.print()">
-
-                🖨 Print
-
-            </button>
+            <button onclick="window.print()">🖨 Print</button>
 
         </div>
 
         <!-- Table -->
-
         <div class="table-container">
 
             <table>
 
                 <thead>
-
                     <tr>
-
                         <th>#</th>
                         <th>Item</th>
                         <th>Category</th>
                         <th>Amount</th>
                         <th>Date</th>
                         <th>Action</th>
-
                     </tr>
-
                 </thead>
 
-                <tbody id="expenseTableBody">
-
-                </tbody>
+                <tbody id="expenseTableBody"></tbody>
 
             </table>
 
