@@ -1,14 +1,43 @@
-<div class="summary-card">
-    <h3>Total Income</h3>
-    <h2 id="totalIncome">UGX 0</h2>
-</div>
+// ===============================
+// RAYP DASHBOARD SYSTEM
+// ===============================
 
-<div class="summary-card">
-    <h3>Total Expenses</h3>
-    <h2 id="totalExpenses">UGX 0</h2>
-</div>
+// Load data
+let income = JSON.parse(localStorage.getItem("income")) || [];
+let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-<div class="summary-card">
-    <h3>Profit</h3>
-    <h2 id="totalProfit">UGX 0</h2>
-</div>
+// Sum helper
+function sum(arr) {
+    return arr.reduce((total, item) => total + Number(item.amount || 0), 0);
+}
+
+// Calculate values
+const totalIncome = sum(income);
+const totalExpenses = sum(expenses);
+const profit = totalIncome - totalExpenses;
+
+// Update UI
+function updateDashboard() {
+
+    document.getElementById("totalIncome").textContent =
+        "UGX " + totalIncome.toLocaleString();
+
+    document.getElementById("totalExpenses").textContent =
+        "UGX " + totalExpenses.toLocaleString();
+
+    const profitEl = document.getElementById("totalProfit");
+
+    profitEl.textContent =
+        "UGX " + profit.toLocaleString();
+
+    profitEl.style.color = profit >= 0 ? "green" : "red";
+}
+
+// Run
+updateDashboard();
+
+// Logout (optional)
+function logout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "index.html";
+}
