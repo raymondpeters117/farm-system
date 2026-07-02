@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAYP Farm Management System | Dashboard</title>
+    <title>RAYP Dashboard</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,8 +13,7 @@
 
 <div class="wrapper">
 
-    <!-- ================= SIDEBAR ================= -->
-
+    <!-- SIDEBAR -->
     <aside class="sidebar">
 
         <div class="logo">
@@ -22,271 +22,63 @@
         </div>
 
         <nav class="nav-menu">
-
-            <a href="dashboard.html" class="active">
-                🏠 <span>Dashboard</span>
-            </a>
-
-            <a href="income.html">
-                💰 <span>Income</span>
-            </a>
-
-            <a href="expenses.html">
-                💸 <span>Expenses</span>
-            </a>
-
-            <a href="workers.html">
-                👨‍🌾 <span>Workers</span>
-            </a>
-
-            <a href="inventory.html">
-                📦 <span>Inventory</span>
-            </a>
-
-            <a href="crops.html">
-                🌱 <span>Crops</span>
-            </a>
-
-            <a href="reports.html">
-                📊 <span>Reports</span>
-            </a>
-
-            <a href="settings.html">
-                ⚙️ <span>Settings</span>
-            </a>
-
+            <a href="dashboard.html" class="active">🏠 Dashboard</a>
+            <a href="income.html">💰 Income</a>
+            <a href="expenses.html">💸 Expenses</a>
+            <a href="workers.html">👨‍🌾 Workers</a>
+            <a href="inventory.html">📦 Inventory</a>
+            <a href="crops.html">🌱 Crops</a>
+            <a href="reports.html">📊 Reports</a>
+            <a href="settings.html">⚙️ Settings</a>
         </nav>
 
         <div class="sidebar-footer">
-
-            <button class="btn-danger"
-                onclick="window.location.href='index.html'">
-
-                🚪 Logout
-
-            </button>
-
+            <button class="btn-danger" onclick="logout()">🚪 Logout</button>
         </div>
 
     </aside>
 
-    <!-- ================= MAIN CONTENT ================= -->
-
+    <!-- MAIN -->
     <main class="main">
 
-        <!-- HEADER -->
+        <!-- TOP BAR -->
+        <div class="top-bar">
 
-        <header class="header">
-
-            <div>
-
-                <h2>Welcome to RAYP Farm Dashboard 👋</h2>
-
-                <p>Manage your farm activities efficiently from one place.</p>
-
-            </div>
+            <h2>📊 Dashboard Overview</h2>
 
             <div class="user-profile">
-
-                <img id="userPhoto"
-                     src="images/default-profile.png"
-                     alt="Profile Photo">
-
-                <div>
-
-                    <strong>Rayp</strong><br>
-
-                    <small>Farm Administrator</small>
-
-                </div>
-
+                <img id="userPhoto" src="images/default-profile.png" alt="Profile Photo">
             </div>
 
-        </header>
+        </div>
 
-        <!-- DASHBOARD CARDS -->
-<section class="cards">
-
-    <div class="card">
-        <h3>Total Income</h3>
-        <p id="totalIncome">UGX 0</p>
-    </div>
-
-    <div class="card">
-        <h3>Total Expenses</h3>
-        <p id="totalExpense">UGX 0</p>
-    </div>
-
-    <div class="card">
-        <h3>Workers</h3>
-        <p id="workerCount">0</p>
-    </div>
-
-    <div class="card">
-        <h3>Profit</h3>
-        <p id="profit">UGX 0</p>
-    </div>
-
-</section>
-
-        <br><br>
-
-        <!-- QUICK ACTIONS -->
-
-        <h2>Quick Actions</h2>
-
-        <br>
-
+        <!-- SUMMARY CARDS -->
         <div class="cards">
 
-            <button onclick="location.href='income.html'">
-                ➕ Add Income
-            </button>
+            <div class="summary-card">
+                <h3>Total Income</h3>
+                <h2 id="totalIncome">UGX 0</h2>
+            </div>
 
-            <button onclick="location.href='expenses.html'">
-                💸 Add Expense
-            </button>
+            <div class="summary-card">
+                <h3>Total Expenses</h3>
+                <h2 id="totalExpenses">UGX 0</h2>
+            </div>
 
-            <button onclick="location.href='workers.html'">
-                👨‍🌾 Workers
-            </button>
-
-            <button onclick="location.href='inventory.html'">
-                📦 Inventory
-            </button>
-
-            <button onclick="location.href='crops.html'">
-                🌱 Crops
-            </button>
-
-            <button onclick="location.href='reports.html'">
-                📊 Reports
-            </button>
+            <div class="summary-card">
+                <h3>Profit</h3>
+                <h2 id="totalProfit">UGX 0</h2>
+            </div>
 
         </div>
-
-        <br><br>
-
-        <!-- RECENT ACTIVITIES -->
-
-        <h2>Recent Activities</h2>
-
-        <div class="table-container">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>#</th>
-
-                        <th>Activity</th>
-
-                        <th>Category</th>
-
-                        <th>Amount</th>
-
-                        <th>Date</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-
-                        <td>1</td>
-
-                        <td>Purchased Fertilizer</td>
-
-                        <td>Expense</td>
-
-                        <td>UGX 350,000</td>
-
-                        <td>29/06/2026</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>2</td>
-
-                        <td>Sold Maize</td>
-
-                        <td>Income</td>
-
-                        <td>UGX 1,200,000</td>
-
-                        <td>28/06/2026</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>3</td>
-
-                        <td>Worker Salaries</td>
-
-                        <td>Expense</td>
-
-                        <td>UGX 500,000</td>
-
-                        <td>27/06/2026</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>4</td>
-
-                        <td>Purchased Seeds</td>
-
-                        <td>Inventory</td>
-
-                        <td>UGX 280,000</td>
-
-                        <td>26/06/2026</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>5</td>
-
-                        <td>Tomato Harvest</td>
-
-                        <td>Income</td>
-
-                        <td>UGX 900,000</td>
-
-                        <td>25/06/2026</td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-        <!-- FOOTER -->
-
-        <footer>
-
-            <p>
-                © 2026 RAYP Farm Management System |
-                All Rights Reserved.
-            </p>
-
-        </footer>
 
     </main>
 
 </div>
 
-<script src="profile.js"></script>
 <script src="dashboard.js"></script>
+<script src="auth.js"></script>
+<script src="profile.js"></script>
+
 </body>
 </html>
