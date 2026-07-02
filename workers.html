@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workers Management</title>
     <link rel="stylesheet" href="style.css">
-</style>
 </head>
- 
-    <div class="wrapper">
-  <!-- Sidebar -->
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
     <aside class="sidebar">
 
         <div class="logo">
@@ -17,9 +22,9 @@
 
         <nav class="nav-menu">
             <a href="dashboard.html">🏠 <span>Dashboard</span></a>
-            <a href="income.html" class="active">💰 <span>Income</span></a>
+            <a href="income.html">💰 <span>Income</span></a>
             <a href="expenses.html">💸 <span>Expenses</span></a>
-            <a href="workers.html">👨‍🌾 <span>Workers</span></a>
+            <a href="workers.html" class="active">👨‍🌾 <span>Workers</span></a>
             <a href="inventory.html">📦 <span>Inventory</span></a>
             <a href="crops.html">🌱 <span>Crops</span></a>
             <a href="reports.html">📊 <span>Reports</span></a>
@@ -33,46 +38,56 @@
         </div>
 
     </aside>
-	</div>
+
     <!-- Main Content -->
     <main class="main">
-<div class="user-profile">
-    <img id="userPhoto" src="" alt="Profile Photo">
+
+        <div class="user-profile">
+            <img id="userPhoto" src="" alt="Profile Photo">
+        </div>
+
+        <h1>Workers Management</h1>
+
+        <div class="form-section">
+
+            <div class="worker-form">
+
+                <input type="text" id="workerName" placeholder="Worker Name">
+
+                <input type="text" id="workerRole" placeholder="Role">
+
+                <input type="number" id="workerSalary" placeholder="Salary">
+
+                <input type="tel" id="workerContact" placeholder="Contact">
+
+                <button onclick="saveWorker()">Save Worker</button>
+
+            </div>
+
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Salary (UGX)</th>
+                    <th>Contact</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="workersTable"></tbody>
+
+        </table>
+
+    </main>
+
 </div>
-</div>
-    <h1 class="auto-style1">Workers Management</h1>
-
-    <div class="form-section">
-
-       <div class="worker-form">
-    <input type="text" id="workerName" placeholder="Worker Name">
-
-    <input type="text" id="workerRole" placeholder="Role">
-
-    <input type="number" id="workerSalary" placeholder="Salary">
-<input type="number" id="workercontact" placeholder="contact">
-
-
-
-    <button onclick="saveWorker()">Save Worker</button>
-</div>
-
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Salary</th>
-            <th>Contact</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody id="workersTable"></tbody>
-</table>
 
 <script src="workers.js"></script>
-		<script src="profile.js"></script>
-		localStorage.setItem("workers", JSON.stringify(workers));
+<script src="profile.js"></script>
+
 </body>
+
 </html>
-0750000990
