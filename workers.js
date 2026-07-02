@@ -1,79 +1,67 @@
-// Load workers when page opens
-document.addEventListener("DOMContentLoaded", loadWorkers);
+let workers = JSON.parse(localStorage.getItem("workers")) || [];
+
+displayWorkers();
 
 function saveWorker() {
-    let name = document.getElementById("workerName").value;
-    let role = document.getElementById("workerRole").value;
-    let salary = document.getElementById("workerSalary").value;
 
-    if (name === "" || role === "" || salary === "") {
-        alert("Please fill all fields");
+    const name = document.getElementById("workerName").value.trim();
+    const role = document.getElementById("workerRole").value.trim();
+    const salary = document.getElementById("workerSalary").value;
+    const contact = document.getElementById("workerContact").value.trim();
+
+    if (!name || !role || !salary || !contact) {
+        alert("Please fill in all fields.");
         return;
     }
 
-    let workers = JSON.parse(localStorage.getItem("workers")) || [];
-
     workers.push({
-        id: Date.now(),
-        name: name,
-        role: role,
-        salary: salary
+        name,
+        role,
+        salary,
+        contact
     });
 
     localStorage.setItem("workers", JSON.stringify(workers));
 
+    displayWorkers();
+
     document.getElementById("workerName").value = "";
     document.getElementById("workerRole").value = "";
     document.getElementById("workerSalary").value = "";
-    document.getElementById("workerContact").value="";
-    loadWorkers();
+    document.getElementById("workerContact").value = "";
 }
 
-function loadWorkers() {
-    let workers = JSON.parse(localStorage.getItem("workers")) || [];
-    let tableBody = document.getElementById("workersTable");
+function displayWorkers() {
 
-    tableBody.innerHTML = "";
+    const table = document.getElementById("workersTable");
 
-    workers.forEach(worker => {
-        tableBody.innerHTML += `
+    table.innerHTML = "";
+
+    workers.forEach((worker, index) => {
+
+        table.innerHTML += `
             <tr>
                 <td>${worker.name}</td>
                 <td>${worker.role}</td>
-                <td>${worker.salary}</td>
+                <td>${Number(worker.salary).toLocaleString()}</td>
                 <td>${worker.contact}</td>
-<td>
-                    <button onclick="deleteWorker(${worker.id})">
+                <td>
+                    <button onclick="deleteWorker(${index})">
                         Delete
                     </button>
                 </td>
             </tr>
         `;
+
     });
+
 }
 
-function deleteWorker(id) {
-    let workers = JSON.parse(localStorage.getItem("workers")) || [];
+function deleteWorker(index) {
 
-    workers = workers.filter(worker => worker.id !== id);
+    workers.splice(index, 1);
 
     localStorage.setItem("workers", JSON.stringify(workers));
 
-    loadWorkers();
+    displayWorkers();
 }
-function logout() {
-    localStorage.removeItem("loggedInUser");
-
-    alert("Logged out successfully!");
-
-    window.location.href = "index.html"; // Login page
-}
-let workers = JSON.parse(localStorage.getItem("workers")) || [];
-
-workers.push({
-    name: document.getElementById("name").value,
-    phone: document.getElementById("phone").value,
-    position: document.getElementById("position").value
-});
-
-localStorage.setItem("workers", JSON.stringify(workers));
