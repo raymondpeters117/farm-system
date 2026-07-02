@@ -41,6 +41,21 @@ function updateDashboard() {
 
     profitEl.style.color = profit >= 0 ? "green" : "red";
 }
+// ===============================
+// TOTAL WORKERS CALCULATION
+// ===============================
 
+// Load workers from localStorage
+let workers = JSON.parse(localStorage.getItem("workers")) || [];
+
+// Update workers count on dashboard
+function updateWorkers() {
+
+    const workersEl = document.getElementById("totalWorkers");
+
+    if (workersEl) {
+        workersEl.textContent = workers.length;
+    }
+}
 // RUN
 updateDashboard();
