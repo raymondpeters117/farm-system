@@ -1,20 +1,25 @@
 // ===============================
-// RAYP DASHBOARD FIX
+// RAYP DASHBOARD SYSTEM
 // ===============================
 
-// Load data
+// Load data from localStorage
 let income = JSON.parse(localStorage.getItem("income")) || [];
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+let workers = JSON.parse(localStorage.getItem("workers")) || [];
 
+// ===============================
 // SUM FUNCTION
-function sum(data) {
-    return data.reduce((total, item) => {
-        return total + Number(item.amount);
+// ===============================
+function sum(arr) {
+    return arr.reduce((total, item) => {
+        return total + Number(item.amount || 0);
     }, 0);
 }
 
-// CALCULATIONS
-function calculateTotals() {
+// ===============================
+// CALCULATE TOTALS
+// ===============================
+function calculate() {
 
     const totalIncome = sum(income);
     const totalExpenses = sum(expenses);
@@ -23,39 +28,67 @@ function calculateTotals() {
     return { totalIncome, totalExpenses, profit };
 }
 
-// UPDATE UI
-function updateDashboard() {
-
-    const { totalIncome, totalExpenses, profit } = calculateTotals();
-
-    document.getElementById("totalIncome").textContent =
-        "UGX " + totalIncome.toLocaleString();
-
-    document.getElementById("totalExpenses").textContent =
-        "UGX " + totalExpenses.toLocaleString();
-
-    const profitEl = document.getElementById("totalProfit");
-
-    profitEl.textContent =
-        "UGX " + profit.toLocaleString();
-
-    profitEl.style.color = profit >= 0 ? "green" : "red";
-}
 // ===============================
-// TOTAL WORKERS CALCULATION
+// UPDATE WORKERS
 // ===============================
-
-// Load workers from localStorage
-let workers = JSON.parse(localStorage.getItem("workers")) || [];
-
-// Update workers count on dashboard
 function updateWorkers() {
-
     const workersEl = document.getElementById("totalWorkers");
 
     if (workersEl) {
         workersEl.textContent = workers.length;
     }
 }
-// RUN
+
+// ===============================
+// UPDATE DASHBOARD UI
+// ===============================
+function updateDashboard() {
+
+    const data = calculate();
+
+    const incomeEl = document.getElementById("totalIncome");
+    const expenseEl = document.getElementById("totalExpenses");
+    const profitEl = document.getElementById("totalProfit");
+
+    if (incomeEl) {
+        incomeEl.textContent = "UGX " + data.totalIncome.toLocaleString();
+    }
+
+    if (expenseEl) {
+        expenseEl.textContent = "UGX " + data.totalExpenses.toLocaleString();
+    }
+
+    if (profitEl) {
+        profitEl.textContent = "UGX " + data.profit.toLocaleString();
+
+        profitEl.style.color =
+            data.profit > 0 ? "green" :
+            data.profit < 0 ? "red" :
+            "black";
+    }
+
+    updateWorkers();
+}
+
+// ===============================
+// AUTO REFRESH (LIVE UPDATE)
+// ===============================
+function refreshDashboard() {
+    income = JSON.parse(localStorage.getItem("income")) || [];
+    expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+    workers = JSON.parse(localStorage.getItem("workers")) || [];
+
+    updateDashboard();
+}
+
+// RUN ON LOAD
 updateDashboard();
+
+// KEEP SYNCED
+setInterval(refreshDashboard, 2000);
+
+// LOGOUT
+function logout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "index.html";
+}
