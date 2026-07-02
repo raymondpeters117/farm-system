@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Income Management</title>
- <link rel="stylesheet" href="style.css">
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Management</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
+<body>
+
 <div class="wrapper">
 
-    <!-- ================= SIDEBAR ================= -->
-
+    <!-- Sidebar -->
     <aside class="sidebar">
 
         <div class="logo">
@@ -19,120 +20,100 @@
         </div>
 
         <nav class="nav-menu">
-
-            <a href="dashboard.html" class="active">
-                🏠 <span>Dashboard</span>
-            </a>
-
-            <a href="income.html">
-                💰 <span>Income</span>
-            </a>
-
-            <a href="expenses.html">
-                💸 <span>Expenses</span>
-            </a>
-
-            <a href="workers.html">
-                👨‍🌾 <span>Workers</span>
-            </a>
-
-            <a href="inventory.html">
-                📦 <span>Inventory</span>
-            </a>
-
-            <a href="crops.html">
-                🌱 <span>Crops</span>
-            </a>
-
-            <a href="reports.html">
-                📊 <span>Reports</span>
-            </a>
-
-            <a href="settings.html">
-                ⚙️ <span>Settings</span>
-            </a>
-
+            <a href="dashboard.html">🏠 <span>Dashboard</span></a>
+            <a href="income.html" class="active">💰 <span>Income</span></a>
+            <a href="expenses.html">💸 <span>Expenses</span></a>
+            <a href="workers.html">👨‍🌾 <span>Workers</span></a>
+            <a href="inventory.html">📦 <span>Inventory</span></a>
+            <a href="crops.html">🌱 <span>Crops</span></a>
+            <a href="reports.html">📊 <span>Reports</span></a>
+            <a href="settings.html">⚙️ <span>Settings</span></a>
         </nav>
 
         <div class="sidebar-footer">
-
-            <button class="btn-danger"
-                onclick="window.location.href='index.html'">
-
+            <button class="btn-danger" onclick="window.location.href='index.html'">
                 🚪 Logout
-
             </button>
-
         </div>
 
     </aside>
 
- <main class="main">
+    <!-- Main Content -->
+    <main class="main">
 
-<div class="sidebar-user">
-	
+        <div class="sidebar-user"></div>
+
+        <div class="user-profile">
+            <img id="userPhoto" src="" alt="Profile Photo">
+        </div>
+
+        <section class="page-header">
+            <h1 style="border-radius:15px;border:3px solid red;width:258px;background:green;color:yellow;font-family:'Comic Sans MS';">
+                Income Records
+            </h1>
+        </section>
+
+        <section class="form-section">
+
+            <form id="incomeForm">
+
+                <input
+                    type="text"
+                    id="source"
+                    placeholder="Income Source"
+                    required>
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Amount"
+                    required>
+
+                <input
+                    type="date"
+                    id="date"
+                    required>
+
+                <button type="submit">
+                    Add Income
+                </button>
+
+            </form>
+
+        </section>
+
+        <section class="table-section">
+
+            <input
+                type="text"
+                id="searchIncome"
+                placeholder="Search Income">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="incomeTable">
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
 </div>
-	<div class="user-profile">
-    <img id="userPhoto" src="" alt="Profile Photo">
-</div>
-</div>
-<section class="page-header">
-    <h1 class="auto-style2" style="border-radius: 15px; border: medium solid #FF0000; s; width: 258px; background-color: #008000; line-height: normal; vertical-align: text-top; font-family: 'comic Sans MS'; font-size: x-large; font-weight: bold; color: #FFFF00;">Income Records</h1>
-</section>
 
-<section class="form-section">
-
-    <form id="incomeForm">
-
-        <input type="text"
-               id="source"
-               placeholder="Income Source"
-               required>
-
-        <input type="number"
-               id="amount"
-               placeholder="Amount"
-               required>
-
-        <input type="date"
-               id="date"
-               required>
-
-        <button type="submit">
-            Add Income
-        </button>
-
-    </form>
-
-</section>
-
-<section class="table-section">
-
-    <input type="text"
-           id="searchIncome"
-           placeholder="Search Income">
-
-    <table>
-
-        <thead>
-            <tr>
-                <th>Source</th>
-                <th>Amount</th>
-                <th>Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-
-        <tbody id="incomeTable">
-        </tbody>
-
-    </table>
-
-</section>
 <script src="auth.js"></script>
-	<script src="profile.js"></script>
-
+<script src="profile.js"></script>
 <script src="income.js"></script>
-localStorage.setItem("income", JSON.stringify(income));
+
 </body>
 </html>
