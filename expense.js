@@ -1,21 +1,85 @@
 // ===============================
-// LOAD DATA
+// RAYP FARM MANAGEMENT SYSTEM
+// expense.js
 // ===============================
-let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 
-// Chart variable
-let expenseChart;
+// Load expense records from localStorage
+let expenseRecords = JSON.parse(localStorage.getItem("expenses")) || [];
 
-// Run on load
-window.onload = function () {
-    displayExpenses();
-    renderChart();
-};
+// Get HTML elements
+const form = document.getElementById("expenseForm");
+const table = document.getElementById("expenseTableBody");
+const searchInput = document.getElementById("searchExpense");
 
-// ===============================
-// ADD EXPENSE
-// ===============================
-document.getElementById("expenseForm").addEventListener("submit", function (e) {
+// Create Total Expense display if it doesn't exist
+let totalDisplay = document.getElementById("totalExpense");
+
+if (!totalDisplay) {
+    totalDisplay = document.createElement("h2");
+    totalDisplay.id = "totalExpense";
+    totalDisplay.style.margin = "15px 0";
+    totalDisplay.style.color = "red";
+
+    const tableSection = document.querySelector(".table-container");
+    tableSection.insertBefore(totalDisplay, tableSection.firstChild);
+}
+
+// Save to localStorage
+function saveExpenses() {
+    localStorage.setItem("expenses", JSON.stringify(expenseRecords));
+}
+
+// Display all expenses
+function displayExpenses(records = expenseRecords) {
+
+    table.innerHTML = "";
+
+    if (records.length === 0) {
+        table.innerHTML = `
+            <tr>
+                <td colspan="5" style="text-align:center;">
+                    No expense records found.
+                </td>
+            </tr>
+        `;
+        updateTotal(records);
+        return;
+    }
+
+    records.forEach((expense, index) => {
+
+        table.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${expense.item}</td>
+                <td>${expense.category}</td>
+                <td>UGX ${Number(expense.amount).toLocaleString()}</td>
+                <td>${expense.date}</td>
+                <td>
+                    <button onclick="editExpense(${index})">✏ Edit</button>
+                    <button onclick="deleteExpense(${index})">🗑 Delete</button>
+                </td>
+            </tr>
+        `;
+    });
+
+    updateTotal(records);
+}
+
+// Update total expenses
+function updateTotal(records = expenseRecords) {
+
+    const total = records.reduce((sum, expense) => {
+        return sum + Number(expense.amount);
+    }, 0);
+
+    totalDisplay.innerHTML =
+        `Total Expenses: <span style="color:blue;">UGX ${total.toLocaleString()}</span>`;
+}
+
+// Add new expense
+form.addEventListener("submit", function (e) {
+
     e.preventDefault();
 
     const item = document.getElementById("item").value.trim();
@@ -23,155 +87,71 @@ document.getElementById("expenseForm").addEventListener("submit", function (e) {
     const amount = Number(document.getElementById("amount").value);
     const date = document.getElementById("date").value;
 
-    if (!item || !category || !amount || !date) {
-        alert("Please fill all fields!");
+    if (!item || !category || amount <= 0 || !date) {
+        alert("Please complete all fields.");
         return;
     }
 
-    expenses.push({ item, category, amount, date });
+    expenseRecords.push({
+        item,
+        category,
+        amount,
+        date
+    });
 
-    localStorage.setItem("expenses", JSON.stringify(expenses));
-
-    document.getElementById("expenseForm").reset();
-
+    saveExpenses();
     displayExpenses();
-    renderChart();
 
-    alert("Expense saved!");
+    form.reset();
 });
 
-// ===============================
-// DISPLAY TABLE
-// ===============================
-function displayExpenses() {
-
-    const table = document.getElementById("expenseTableBody");
-
-    table.innerHTML = "";
-
-    let total = 0;
-
-    expenses.forEach((exp, index) => {
-
-        total += exp.amount;
-
-        table.innerHTML += `
-            <tr>
-                <td>${index + 1}</td>
-                <td>${exp.item}</td>
-                <td>${exp.category}</td>
-                <td>UGX ${exp.amount.toLocaleString()}</td>
-                <td>${exp.date}</td>
-                <td>
-                    <button class="btn-danger" onclick="deleteExpense(${index})">
-                        Delete
-                    </button>
-                </td>
-            </tr>
-        `;
-    });
-
-    document.getElementById("totalExpense").textContent =
-        "UGX " + total.toLocaleString();
-}
-
-// ===============================
-// DELETE
-// ===============================
+// Delete expense
 function deleteExpense(index) {
 
-    if (confirm("Delete this expense?")) {
+    if (confirm("Delete this expense record?")) {
 
-        expenses.splice(index, 1);
+        expenseRecords.splice(index, 1);
 
-        localStorage.setItem("expenses", JSON.stringify(expenses));
-
+        saveExpenses();
         displayExpenses();
-        renderChart();
     }
 }
 
-// ===============================
-// MONTHLY CHART
-// ===============================
-function renderChart() {
+// Edit expense
+function editExpense(index) {
 
-    const ctx = document.getElementById("expenseChart").getContext("2d");
+    const expense = expenseRecords[index];
 
-    // Group by month
-    let monthlyTotals = {};
+    document.getElementById("item").value = expense.item;
+    document.getElementById("category").value = expense.category;
+    document.getElementById("amount").value = expense.amount;
+    document.getElementById("date").value = expense.date;
 
-    expenses.forEach(exp => {
+    expenseRecords.splice(index, 1);
 
-        let month = exp.date.substring(0, 7); // YYYY-MM
-
-        if (!monthlyTotals[month]) {
-            monthlyTotals[month] = 0;
-        }
-
-        monthlyTotals[month] += exp.amount;
-    });
-
-    let labels = Object.keys(monthlyTotals).sort();
-    let data = labels.map(m => monthlyTotals[m]);
-
-    // Destroy old chart before creating new one
-    if (expenseChart) {
-        expenseChart.destroy();
-    }
-
-    expenseChart = new Chart(ctx, {
-        type: "bar",
-        data: {
-            labels: labels,
-            datasets: [{
-                label: "Monthly Expenses (UGX)",
-                data: data,
-                backgroundColor: "#1976d2"
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true
-                }
-            }
-        }
-    });
-}
-let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
-
-window.onload = function () {
+    saveExpenses();
     displayExpenses();
-};
 
-function displayExpenses() {
-
-    const table = document.getElementById("expenseTableBody");
-    table.innerHTML = "";
-
-    if (expenses.length === 0) {
-        table.innerHTML = `
-            <tr>
-                <td colspan="5" style="text-align:center;">
-                    No expenses saved yet
-                </td>
-            </tr>
-        `;
-        return;
-    }
-
-    expenses.forEach((exp, index) => {
-
-        table.innerHTML += `
-            <tr>
-                <td>${index + 1}</td>
-                <td>${exp.item}</td>
-                <td>${exp.category}</td>
-                <td>UGX ${Number(exp.amount).toLocaleString()}</td>
-                <td>${exp.date}</td>
-            </tr>
-        `;
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
     });
 }
+
+// Search expenses
+searchInput.addEventListener("keyup", function () {
+
+    const search = this.value.toLowerCase();
+
+    const filtered = expenseRecords.filter(expense =>
+        expense.item.toLowerCase().includes(search) ||
+        expense.category.toLowerCase().includes(search) ||
+        expense.date.toLowerCase().includes(search) ||
+        expense.amount.toString().includes(search)
+    );
+
+    displayExpenses(filtered);
+});
+
+// Initial display
+displayExpenses();
