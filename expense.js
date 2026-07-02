@@ -152,6 +152,6 @@ searchInput.addEventListener("keyup", function () {
 
     displayExpenses(filtered);
 });
-
+localStorage.setItem("expenses", JSON.stringify(expenseRecords));
 // Initial display
 displayExpenses();
